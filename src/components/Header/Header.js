@@ -12,6 +12,8 @@ function Header() {
   const accountNavBarRef = useRef(null);
   const [styleOpacity, setStyleOpacity] = useState(1);
 
+  const diceIcon = "dice-icon.png";
+
   useEffect(() => {
     window.addEventListener("scroll", switchOpacity);
     return () => {
@@ -148,7 +150,7 @@ function Header() {
         </div>
         <img
           className="header-random-cocktail-img"
-          src="../images/icons/dice-icon.png"
+          src={`../images/icons/${diceIcon}`}
           alt="Try a random cocktail!"
           title="Try a random cocktail!"
           onClick={startRandomDice}

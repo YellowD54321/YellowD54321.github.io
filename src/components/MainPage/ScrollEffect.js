@@ -106,8 +106,6 @@ export function ScrollEffect() {
       if (styleVertical > 0) styleVertical = 0;
       if (styleHorizontal < 0) styleHorizontal = 0;
       if (styleScale >= 2) styleScale = 2;
-      console.log("styleOpacity");
-      console.log(styleOpacity);
       return {
         top: styleVertical,
         right: styleHorizontal,

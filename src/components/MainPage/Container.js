@@ -24,7 +24,6 @@ function Container(props) {
         containerRect.y + containerRect.height - selfRect.height / 2;
       const selfRectOriginalY = selfRect.y + selfRect.height / 2;
       const result = (selfRectOriginalY - top) / (bottom - top);
-      console.log(result);
       setScrollPercent(result);
     }
   };

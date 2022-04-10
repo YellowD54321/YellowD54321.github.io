@@ -19,10 +19,6 @@ import SignUpPage from "./components/LoginPage/SignUpPage.js";
 import FavouritePage from "./components/FavouritePage/FavouritePage.js";
 
 function App() {
-  let params = new URL(document.location);
-  console.log("params");
-  console.log(params);
-
   const WholeMainPage = () => {
     return (
       <div>
