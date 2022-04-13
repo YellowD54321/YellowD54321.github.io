@@ -3,6 +3,11 @@ import { useStateValue } from "../Reducer/StateProvider";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
+import myFavouriteIcon from "../../assets/images/icons/myfavourite-icon.png";
+import logoImage from "../../assets/images/Logo/Logo.png";
+import searchIcon from "../../assets/images/icons/search-icon.png";
+import diceIcon from "../../assets/images/icons/dice-icon.png";
+import loginIcon from "../../assets/images/icons/login-icon.png";
 
 function Header() {
   const searchBarRef = useRef("");
@@ -11,8 +16,6 @@ function Header() {
   const navigate = useNavigate();
   const accountNavBarRef = useRef(null);
   const [styleOpacity, setStyleOpacity] = useState(1);
-
-  const diceIcon = "dice-icon.png";
 
   useEffect(() => {
     window.addEventListener("scroll", switchOpacity);
@@ -127,7 +130,7 @@ function Header() {
       <div className="header-left">
         <img
           className="header-logo"
-          src="../images/Logo/Logo.png"
+          src={logoImage}
           alt="Next Drink"
           onClick={handleLogoClick}
         />
@@ -143,14 +146,14 @@ function Header() {
           />
           <img
             className="header-search-bar-img"
-            src="../images/icons/search-icon.png"
+            src={searchIcon}
             alt=""
             onClick={startSearching}
           />
         </div>
         <img
           className="header-random-cocktail-img"
-          src={`../images/icons/${diceIcon}`}
+          src={diceIcon}
           alt="Try a random cocktail!"
           title="Try a random cocktail!"
           onClick={startRandomDice}
@@ -161,7 +164,7 @@ function Header() {
           <li className="header-myfavourite">
             <img
               className="header-myfavourite-img"
-              src="../images/icons/myfavourite-icon.png"
+              src={myFavouriteIcon}
               alt="My Favourite Cocktail"
               title="My Favourite Cocktail"
               style={{ display: user ? "block" : "none" }}
@@ -185,7 +188,7 @@ function Header() {
               {user ? userEmailName?.toUpperCase().split("")[0] : ""}
               <img
                 className="header-login-img"
-                src="../images/icons/login-icon.png"
+                src={loginIcon}
                 alt=""
                 style={{ display: user ? "none" : "block" }}
               />
@@ -202,7 +205,7 @@ function Header() {
               <li className="header-myfavourite">
                 <img
                   className="header-myfavourite-img"
-                  src="../images/icons/myfavourite-icon.png"
+                  src={myFavouriteIcon}
                   alt="My Favourite Cocktail"
                   title="My Favourite Cocktail"
                   onClick={handleFavouriteClick}

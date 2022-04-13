@@ -61,7 +61,6 @@ function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      console.log("THE USE iS >>> ", authUser);
       if (authUser) {
         dispatch({
           type: "SET_USER",
@@ -90,7 +89,6 @@ function App() {
             favouriteList: newFavouriteList,
           },
         });
-        console.log("Document data:", userData);
       } else {
         console.log(`No Document named: ${user.uid}`);
       }

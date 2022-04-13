@@ -3,6 +3,8 @@ import { db } from "../../firebase.js";
 import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "./cocktailList.css";
+import myFavouriteIcon from "../../assets/images/icons/myfavourite-icon.png";
+import notMyFavouriteIcon from "../../assets/images/icons/notMyfavourite-icon.png";
 
 function CocktailList(props) {
   const cocktails = props.cocktail;
@@ -11,15 +13,15 @@ function CocktailList(props) {
 
   const eachCocktail = cocktails.map((cocktail, index) => {
     const favouriteIcon = isFavourite(cocktail.id)
-      ? "myFavourite-icon.png"
-      : "notMyFavourite-icon.png";
+      ? myFavouriteIcon
+      : notMyFavouriteIcon;
     return (
       <div className="cocktailList-region" key={index}>
         <h2 className="cocktailList-cocktail-name">{cocktail.name}</h2>
         <div className="cocktailList-img-region">
           <img
             className="cocktailList-favourite-img"
-            src={`../images/icons/${favouriteIcon}`}
+            src={favouriteIcon}
             alt="Favourite Icon"
             style={{ display: user ? "block" : "none" }}
             onClick={() => switchFavourite(cocktail)}

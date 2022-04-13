@@ -4,7 +4,6 @@ export const initialState = {
 };
 
 const viewRegionReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "SET_IMAGE":
       return {

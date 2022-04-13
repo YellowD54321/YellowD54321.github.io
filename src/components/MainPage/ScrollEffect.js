@@ -775,116 +775,116 @@ export function ScrollEffect() {
 
     const imgSugarCube = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.sugarCube?.images[5];
+        return oldFasionImages?.sugarCube?.imageUrl[5];
       }
       const DEMARCATION_IN_START = -0.12;
       const DEMARCATION_IN_END = 0.8;
-      const imgAmount = oldFasionImages?.sugarCube?.images.length - 1;
+      const imgAmount = oldFasionImages?.sugarCube?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.sugarCube?.images[imageClip];
+      return oldFasionImages?.sugarCube?.imageUrl[imageClip];
     };
 
     const imgBitter = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.bitter?.images[
-          oldFasionImages?.bitter?.images.length - 1
+        return oldFasionImages?.bitter?.imageUrl[
+          oldFasionImages?.bitter?.imageUrl.length - 1
         ];
       }
       const DEMARCATION_IN_START = -0.05;
       const DEMARCATION_IN_END = 0.8;
-      const imgAmount = oldFasionImages?.bitter?.images.length - 1;
+      const imgAmount = oldFasionImages?.bitter?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.bitter?.images[imageClip];
+      return oldFasionImages?.bitter?.imageUrl[imageClip];
     };
 
     const imgCrush = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.crush?.images[43];
+        return oldFasionImages?.crush?.imageUrl[43];
       }
       const DEMARCATION_IN_START = 0.17;
       const DEMARCATION_IN_END = 0.8;
-      const imgAmount = oldFasionImages?.crush?.images.length - 1;
+      const imgAmount = oldFasionImages?.crush?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.crush?.images[imageClip];
+      return oldFasionImages?.crush?.imageUrl[imageClip];
     };
 
     const imgBourbon = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.bourbon?.images[85];
+        return oldFasionImages?.bourbon?.imageUrl[85];
       }
       const DEMARCATION_IN_START = 0.17;
       const DEMARCATION_IN_END = 0.8;
-      const imgAmount = oldFasionImages?.bourbon?.images.length - 1;
+      const imgAmount = oldFasionImages?.bourbon?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.bourbon?.images[imageClip];
+      return oldFasionImages?.bourbon?.imageUrl[imageClip];
     };
 
     const imgIceCube = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.iceCube?.images[47];
+        return oldFasionImages?.iceCube?.imageUrl[47];
       }
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.9;
-      const imgAmount = oldFasionImages?.iceCube?.images.length - 1;
+      const imgAmount = oldFasionImages?.iceCube?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.iceCube?.images[imageClip];
+      return oldFasionImages?.iceCube?.imageUrl[imageClip];
     };
 
     const imgPour = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.pour?.images[63];
+        return oldFasionImages?.pour?.imageUrl[63];
       }
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.9;
-      const imgAmount = oldFasionImages?.pour?.images.length - 1;
+      const imgAmount = oldFasionImages?.pour?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.pour?.images[imageClip];
+      return oldFasionImages?.pour?.imageUrl[imageClip];
     };
 
     const imgPeel = () => {
       if (screenWidthTooSmall()) {
-        return oldFasionImages?.peel?.images[32];
+        return oldFasionImages?.peel?.imageUrl[32];
       }
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.8;
-      const imgAmount = oldFasionImages?.peel?.images.length - 1;
+      const imgAmount = oldFasionImages?.peel?.imageUrl.length - 1;
       const imageClip = setImage(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
         imgAmount
       );
-      return oldFasionImages?.peel?.images[imageClip];
+      return oldFasionImages?.peel?.imageUrl[imageClip];
     };
 
     switch (elementId) {

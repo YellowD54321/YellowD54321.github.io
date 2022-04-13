@@ -6,49 +6,57 @@ import Container from "./Container";
 function MainPage() {
   let oldFasionImagesOriginal = {
     bitter: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 93,
       fileName: "bitter",
       startNumber: 5695,
     },
     bourbon: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 123,
       fileName: "bourbon",
       startNumber: 6366,
     },
     crush: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 73,
       fileName: "crush",
       startNumber: 5999,
     },
     finish: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 1,
       fileName: "finish",
       startNumber: 1,
     },
     iceCube: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 68,
       fileName: "ice cube",
       startNumber: 7166,
     },
     peel: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 77,
       fileName: "peel",
       startNumber: 7876,
     },
     pour: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 100,
       fileName: "pour",
       startNumber: 7275,
     },
     sugarCube: {
-      images: [],
+      imageUrl: [],
+      imageElement: [],
       amount: 37,
       fileName: "test",
       startNumber: 5419,
@@ -70,13 +78,17 @@ function MainPage() {
   useEffect(() => {
     //Initialize oldFasionImages
     loadImageListFromEachFolder(oldFasionImagesOriginal);
+    console.log("oldFasionImagesOriginal");
+    console.log(oldFasionImagesOriginal);
     dispatch({
       type: "SET_IMAGE",
       item: {
         oldFasionImages: oldFasionImagesOriginal,
       },
     });
+  }, []);
 
+  useEffect(() => {
     //Initialize viewRegion
     dispatch({
       type: "SET_VIEW_REGION",
@@ -89,12 +101,60 @@ function MainPage() {
   function loadImageListFromEachFolder(imgObject) {
     for (const [key, imageName] of Object.entries(imgObject)) {
       for (let i = 0; i < imageName.amount; i++) {
-        imageName.images.push(
-          `../images/cocktail-${key}/${imageName.fileName}${
-            imageName.startNumber + i
-          }.png`
-        );
+        const imageUrl = `../images/cocktail-${key}/${imageName.fileName}${
+          imageName.startNumber + i
+        }.png`;
+        const newImg = new Image();
+        const imgClassName = setImgClassName(key);
+        const imgId = setImgId(key);
+        newImg.src = imageUrl;
+        // newImg.className = `main-page-gif-image ${imgClassName}`;
+        // newImg.id = imgId;
+        imageName.imageUrl.push(imageUrl);
+        // imageName.imageElement.push(newImg);
       }
+    }
+  }
+
+  function setImgClassName(imageName) {
+    switch (imageName) {
+      case "sugarCube":
+        return "container-2-img";
+      case "bitter":
+        return "container-2-img";
+      case "crush":
+        return "container-2-img";
+      case "bourbon":
+        return "container-2-img";
+      case "iceCube":
+        return "container-3-img";
+      case "pour":
+        return "container-4-img";
+      case "peel":
+        return "container-5-img";
+      default:
+        return "";
+    }
+  }
+
+  function setImgId(imageName) {
+    switch (imageName) {
+      case "sugarCube":
+        return "container-2-img-1";
+      case "bitter":
+        return "container-2-img-2";
+      case "crush":
+        return "container-2-img-3";
+      case "bourbon":
+        return "container-2-img-4";
+      case "iceCube":
+        return "container-3-img-1";
+      case "pour":
+        return "container-4-img-1";
+      case "peel":
+        return "container-5-img-1";
+      default:
+        return "";
     }
   }
 
@@ -108,7 +168,7 @@ function MainPage() {
               <img
                 id="container-1-img"
                 className="main-page-gif-image"
-                src={oldFasionImages?.finish?.images[0]}
+                src={oldFasionImages?.finish?.imageUrl[0]}
                 alt=""
                 style={scrollEffectContainer1("container-1-img", scrollPercent)}
               />
@@ -151,6 +211,9 @@ function MainPage() {
                     scrollPercent
                   )}
                 ></div>
+                {/* {console.log("oldFasionImages.sugarCube.imageElement[7]")}
+                {console.log(oldFasionImages?.sugarCube)}
+                {oldFasionImages?.sugarCube?.imageElement[7]} */}
                 <img
                   id="container-2-img-1"
                   className="main-page-gif-image container-2-img"
@@ -358,7 +421,7 @@ function MainPage() {
               <img
                 id="container-6-img-1"
                 className="main-page-gif-image container-6-img"
-                src={oldFasionImages?.finish?.images[0]}
+                src={oldFasionImages?.finish?.imageUrl[0]}
                 alt=""
                 style={scrollEffectContainer6(
                   "container-6-img-1",
