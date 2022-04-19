@@ -74,27 +74,6 @@ function App() {
       }
     });
   }, []);
-
-  useEffect(() => {
-    if (!user) return;
-    async function loadDb() {
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        const newFavouriteList = userData.favouriteList;
-        dispatch({
-          type: "FAVOURITE_LIST",
-          item: {
-            favouriteList: newFavouriteList,
-          },
-        });
-      } else {
-        console.log(`No Document named: ${user.uid}`);
-      }
-    }
-    loadDb();
-  }, [user]);
   return (
     <Router>
       <Routes>

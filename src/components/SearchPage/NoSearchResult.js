@@ -3,7 +3,7 @@ import CocktailList from "../CocktailList/CocktailList.js";
 import "./NoSearchResult.css";
 import { useStateValue } from "../Reducer/StateProvider";
 function NoSearchResult(props) {
-  const [{ searchText, searchBtnCount }, dispatch] = useStateValue();
+  const [{ searchText, searchBtnCount }] = useStateValue();
   const [gifImgUrl, setGifImgUrl] = useState("");
   const [cocktail, setCocktail] = useState({
     image: "",
@@ -46,7 +46,12 @@ function NoSearchResult(props) {
   }, [searchBtnCount]);
 
   if (cocktail[0]?.name) {
-    randomCocktail = <CocktailList cocktail={cocktail} />;
+    randomCocktail = (
+      <CocktailList
+        cocktail={cocktail}
+        dispatchFavouriteList={props.dispatchFavouriteList}
+      />
+    );
   }
 
   return (

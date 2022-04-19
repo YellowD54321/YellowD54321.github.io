@@ -1,6 +1,7 @@
+import React, { useState, useEffect } from "react";
 import { useStateValue } from "../Reducer/StateProvider";
 import { db } from "../../firebase.js";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, getDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "./cocktailList.css";
 import myFavouriteIcon from "../../assets/images/icons/myfavourite-icon.png";
@@ -9,7 +10,22 @@ import notMyFavouriteIcon from "../../assets/images/icons/notMyfavourite-icon.pn
 function CocktailList(props) {
   const cocktails = props.cocktail;
   const navigate = useNavigate();
-  const [{ user, favouriteList }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
+  const [favouriteList, setFavouriteList] = useState([]);
+
+  useEffect(() => {
+    async function loadDb() {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        setFavouriteList(userData.favouriteList);
+      } else {
+        console.log(`No Document named: ${user.uid}`);
+      }
+    }
+    loadDb();
+  }, []);
 
   const eachCocktail = cocktails.map((cocktail, index) => {
     const favouriteIcon = isFavourite(cocktail.id)
@@ -53,28 +69,17 @@ function CocktailList(props) {
     let newFavouriteList = [];
     if (isFavourite(cocktailId)) {
       newFavouriteList = favouriteList.filter((ele) => ele.id !== cocktailId);
-      dispatch({
-        type: "FAVOURITE_LIST",
-        item: {
-          favouriteList: newFavouriteList,
-        },
-      });
     } else {
-      favouriteList.push({
+      newFavouriteList = [...favouriteList];
+      newFavouriteList.push({
         id: cocktailId,
         name: cocktail.name,
         description: cocktail.description,
         image: cocktail.image,
         ingredients: cocktail.ingredients,
       });
-      newFavouriteList = favouriteList;
-      dispatch({
-        type: "FAVOURITE_LIST",
-        item: {
-          favouriteList: favouriteList,
-        },
-      });
     }
+    setFavouriteList(newFavouriteList);
     writeDb(newFavouriteList);
   }
 
@@ -85,8 +90,6 @@ function CocktailList(props) {
   const chooseCocktailByClick = (cocktail) => {
     const cocktailInfo = cocktail;
     const cocktailName = cocktail.name.replace(/ /gi, "+");
-    console.log("cocktail");
-    console.log(cocktail);
     dispatch({
       type: "COCKTAIL_INFO",
       item: {

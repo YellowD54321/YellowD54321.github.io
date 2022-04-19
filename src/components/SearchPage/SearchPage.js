@@ -5,8 +5,8 @@ import NoSearchResult from "./NoSearchResult";
 import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
-  const navigate = useNavigate();
   const [{ searchText, searchBtnCount }, dispatch] = useStateValue();
+  const navigate = useNavigate();
   const [cocktail, setCocktail] = useState([
     {
       image: "",
@@ -37,6 +37,7 @@ function SearchPage() {
     cocktailApiUrl = cocktailBasicApiUrl + searchTextForAPI;
   }
   let searchResult = "";
+
   useEffect(() => {
     getDataFromAPI(cocktailApiUrl).then((data) => {
       const drinks = data?.drinks;
