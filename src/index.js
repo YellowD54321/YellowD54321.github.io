@@ -4,10 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import reducer, { initialState } from "./components/Reducer/Reducer";
-import {
-  StateProvider,
-  useStateValue,
-} from "./components/Reducer/StateProvider";
+import { StateProvider } from "./components/Reducer/StateProvider";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,13 +15,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 reportWebVitals();
-
-// import "normalize.css";
-// import ReactDOM from "react-dom";
-// import "./index.css";
-
-// import App from "./App";
-
-// ReactDOM.render(<App />, document.querySelector(".app"));
-
-// module.hot.accept();

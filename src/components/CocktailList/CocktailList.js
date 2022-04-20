@@ -7,12 +7,14 @@ import "./cocktailList.css";
 import myFavouriteIcon from "../../assets/images/icons/myfavourite-icon.png";
 import notMyFavouriteIcon from "../../assets/images/icons/notMyfavourite-icon.png";
 
+// Build cocktail list for other components.
 function CocktailList(props) {
   const cocktails = props.cocktail;
   const navigate = useNavigate();
   const [{ user }, dispatch] = useStateValue();
   const [favouriteList, setFavouriteList] = useState([]);
 
+  //Load favourite list from account database.
   useEffect(() => {
     async function loadDb() {
       const docRef = doc(db, "users", user.uid);
@@ -27,6 +29,7 @@ function CocktailList(props) {
     loadDb();
   }, []);
 
+  //Main structure of list.
   const eachCocktail = cocktails.map((cocktail, index) => {
     const favouriteIcon = isFavourite(cocktail.id)
       ? myFavouriteIcon
@@ -53,6 +56,7 @@ function CocktailList(props) {
     );
   });
 
+  //Write favourite list content to firebase database.
   async function writeDb(favouriteList) {
     try {
       await setDoc(doc(db, "users", user.uid), {
@@ -64,6 +68,7 @@ function CocktailList(props) {
     }
   }
 
+  //Pick current item to favourite list or remove it from favourite list when favourite icon is clicked.
   function switchFavourite(cocktail) {
     const cocktailId = cocktail.id;
     let newFavouriteList = [];
@@ -83,10 +88,12 @@ function CocktailList(props) {
     writeDb(newFavouriteList);
   }
 
+  //Check if list item is inside favourite list of this user.
   function isFavourite(cocktailId) {
     return favouriteList.some((ele) => ele.id === cocktailId);
   }
 
+  //Go to each cocktail page when list item is cilcked.
   const chooseCocktailByClick = (cocktail) => {
     const cocktailInfo = cocktail;
     const cocktailName = cocktail.name.replace(/ /gi, "+");

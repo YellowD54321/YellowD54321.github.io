@@ -3,6 +3,7 @@ export const initialState = {
   viewRegion: null,
 };
 
+//Save images to let all component of main page to use them.
 const viewRegionReducer = (state, action) => {
   switch (action.type) {
     case "SET_IMAGE":

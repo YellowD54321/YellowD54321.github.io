@@ -1,3 +1,4 @@
+//Determine each container to do effects.
 export function ScrollEffect() {
   //container 1
   function scrollEffectContainer1(elementId, scrollPercent) {
@@ -686,8 +687,6 @@ export function ScrollEffect() {
       const DEMARCATION_IN_END = 0.48;
       let styleOpacity = 0;
       let styleScale = 1;
-      const DEMARCATION_OUT_START = 0.61;
-      const DEMARCATION_OUT_END = 0.83;
       if (scrollPercent < DEMARCATION_IN_START) {
         styleOpacity = 0;
       } else if (scrollPercent >= DEMARCATION_IN_START) {
@@ -721,10 +720,13 @@ export function ScrollEffect() {
     }
   }
 
+  //Basic proportion between view region and container.
   const proportionWithContainer = (scrollPercent, startPoint, endPoint) => {
     return (scrollPercent - startPoint) / (endPoint - startPoint);
   };
 
+  //Basic effect about opacity.
+  //Increase first then decrease.
   const effectOpacityIncreaseThenDecrease = (scrollPercent, DEMARCATION) => {
     let styleOpacity = 0;
     if (scrollPercent < DEMARCATION) {
@@ -740,6 +742,7 @@ export function ScrollEffect() {
     return styleOpacity;
   };
 
+  //Common effect for container 2.
   const effectPositionChangeFromOutSide = (
     scrollPercent,
     DEMARCATION_IN_START,
@@ -770,6 +773,7 @@ export function ScrollEffect() {
     return { styleVertical: styleVertical, styleHorizontal: styleHorizontal };
   };
 
+  //Switch images when scrolling.
   function scrollEffectImageChange(elementId, scrollPercent, oldFasionImages) {
     const imgFinish = () => {};
 

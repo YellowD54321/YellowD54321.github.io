@@ -3,6 +3,7 @@ import "./signUpPage.css";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
+//Build Sign up page content.
 function SignUpPage() {
   const userEmailRef = useRef("");
   const userPasswordRef = useRef("");
@@ -11,6 +12,7 @@ function SignUpPage() {
   const navigate = useNavigate();
   const webName = "Next Drink";
 
+  //Sign up by information type in form.
   function handleSignUp() {
     const userEmail = userEmailRef?.current?.value;
     const userPassword = userPasswordRef?.current?.value;

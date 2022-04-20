@@ -6,11 +6,13 @@ import { getAuth } from "firebase/auth";
 import { setDoc, getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase.js";
 
+//Build favourite page.
 function FavouritePage() {
   const [{ user }, dispatch] = useStateValue();
   const [favouriteList, setFavouriteList] = useState(null);
   let favouriteCocktails = null;
 
+  //Load favourite list from account database.
   useEffect(() => {
     async function loadDb() {
       const docRef = doc(db, "users", user.uid);
@@ -25,6 +27,7 @@ function FavouritePage() {
     loadDb();
   }, []);
 
+  //Create favourite list from CocktailList component.
   if (favouriteList && favouriteList.length > 0) {
     favouriteCocktails = (
       <CocktailList

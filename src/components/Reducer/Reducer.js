@@ -6,6 +6,7 @@ export const initialState = {
   favouriteList: [],
 };
 
+//Save different data in reducer to let every component use them.
 const reducer = (state, action) => {
   switch (action.type) {
     case "SEARCH_TEXT":

@@ -9,6 +9,7 @@ import searchIcon from "../../assets/images/icons/search-icon.png";
 import diceIcon from "../../assets/images/icons/dice-icon.png";
 import loginIcon from "../../assets/images/icons/login-icon.png";
 
+//Build Header content.
 function Header() {
   const searchBarRef = useRef("");
   const [{ searchBtnCount, user }, dispatch] = useStateValue();
@@ -17,6 +18,7 @@ function Header() {
   const accountNavBarRef = useRef(null);
   const [styleOpacity, setStyleOpacity] = useState(1);
 
+  //Check window scroll to switch opacity when page is scrolling down.
   useEffect(() => {
     window.addEventListener("scroll", switchOpacity);
     return () => {
@@ -24,6 +26,7 @@ function Header() {
     };
   }, []);
 
+  //Change opacity when page is scrolling down.
   const switchOpacity = () => {
     if (window.outerWidth >= 1024) {
       if (window.scrollY >= 100) {
@@ -34,6 +37,7 @@ function Header() {
     }
   };
 
+  //Save search text to reducer to make other componenet be able to use it.
   const startSearching = () => {
     const searchInput = searchBarRef?.current?.value;
     const btnCounter = searchBtnCount >= 0 ? searchBtnCount + 1 : 0;
@@ -49,12 +53,15 @@ function Header() {
     navigate(`/searchPage/search?q=${searchInputUrl}`);
   };
 
+  //Be albe to press Enter to start searching.
   function searchBarOnKeyUp(event) {
     if (event.key === "Enter") {
       startSearching();
     }
   }
 
+  //Trigger when 'Dice' image is clicked.
+  //Save search text as 'random' for searching a random cocktail.
   function startRandomDice() {
     const btnCounter = searchBtnCount >= 0 ? searchBtnCount + 1 : 0;
     navigate("/searchPage/search?=random");
@@ -67,6 +74,9 @@ function Header() {
     });
   }
 
+  //When account button is clicked,
+  //Go to log in page if not log in yet.
+  //Log out if log in already.
   function handleLogClick() {
     const auth = getAuth();
 
@@ -77,6 +87,7 @@ function Header() {
     }
   }
 
+  //Log out account.
   function handleLogOut(auth) {
     signOut(auth)
       .then(() => {
@@ -90,14 +101,18 @@ function Header() {
       });
   }
 
+  //Go to log in page.
   function handleLogIn() {
     navigate("/loginPage");
   }
 
+  //Go to home page when logo image is clicked.
   function handleLogoClick() {
     navigate("/");
   }
 
+  //Toggle class of account button to change it's style when it is clicked.
+  //Only work in small mode (window width less than 1023px).
   function headerAccountButtonOnClick() {
     if (isLogIn()) {
       const accountInfoWindow = accountNavBarRef?.current;
@@ -117,10 +132,12 @@ function Header() {
     }
   }
 
+  //Check whether log in.
   function isLogIn() {
     return !!user;
   }
 
+  //Go to favourite page when favourite image is clicked.
   function handleFavouriteClick() {
     navigate("/favouritePage");
   }

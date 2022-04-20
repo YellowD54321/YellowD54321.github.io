@@ -3,6 +3,7 @@ import "./loginPage.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
+//Build Log in page content.
 function LoginPage() {
   const userEmailRef = useRef("");
   const userPasswordRef = useRef("");
@@ -11,6 +12,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const webName = "Next Drink";
 
+  //Log in account.
   function logInStart() {
     const userEmail = userEmailRef?.current?.value;
     const userPassword = userPasswordRef?.current?.value;
@@ -37,12 +39,15 @@ function LoginPage() {
         }
       });
   }
+
+  //Be able to press Enter to submit form.
   function passwordOnKeyUp(event) {
     if (event.key === "Enter") {
       logInStart();
     }
   }
 
+  //Go to sign up page.
   function goToSignUpPage() {
     navigate("/signUpPage");
   }

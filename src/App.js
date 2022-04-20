@@ -19,6 +19,7 @@ import SignUpPage from "./components/LoginPage/SignUpPage.js";
 import FavouritePage from "./components/FavouritePage/FavouritePage.js";
 
 function App() {
+  //Combine Header and Main Page
   const WholeMainPage = () => {
     return (
       <div>
@@ -32,6 +33,7 @@ function App() {
       </div>
     );
   };
+  //Combine Header and Search Page
   const WholeSearchPage = () => {
     return (
       <div>
@@ -40,6 +42,7 @@ function App() {
       </div>
     );
   };
+  //Combine Header and Single Cocktail Page
   const WholeProductPage = () => {
     return (
       <div>
@@ -48,6 +51,7 @@ function App() {
       </div>
     );
   };
+  //Combine Header and Favourite Page.
   const WholeFavouritePage = () => {
     return (
       <div>
@@ -57,6 +61,7 @@ function App() {
     );
   };
 
+  //Get account information from Firebase.
   const auth = getAuth();
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {

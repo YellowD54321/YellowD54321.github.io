@@ -4,6 +4,7 @@ import { useStateValue } from "../Reducer/StateProvider";
 import NoSearchResult from "./NoSearchResult";
 import { useNavigate } from "react-router-dom";
 
+//Build Search page content.
 function SearchPage() {
   const [{ searchText, searchBtnCount }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ function SearchPage() {
     : "search.php?s=" + searchText;
   let cocktailApiUrl = "";
 
+  //Determine search content by search text and url key word.
   if (!searchText && !urlKeyWords) {
   } else if (
     searchText?.toLowerCase() === "random" ||
@@ -38,6 +40,8 @@ function SearchPage() {
   }
   let searchResult = "";
 
+  //Get data by search text from header component.
+  //Get data when page first loaded and every time search button is clicked.
   useEffect(() => {
     getDataFromAPI(cocktailApiUrl).then((data) => {
       const drinks = data?.drinks;
@@ -62,6 +66,7 @@ function SearchPage() {
     };
   }, [searchBtnCount]);
 
+  //Fetch api data.
   const getDataFromAPI = async (ApiUrl) => {
     try {
       const url = ApiUrl;
@@ -74,6 +79,7 @@ function SearchPage() {
     }
   };
 
+  //Adjust data to remain useful information.
   const getCocktailInfo = (drinks) => {
     let reslut = [];
     for (let i = 0; i < drinks.length; i++) {
@@ -102,6 +108,7 @@ function SearchPage() {
     return reslut;
   };
 
+  //Rebuild url by add cocktail name in url.
   useEffect(() => {
     if (urlKeyWords?.toLowerCase() === "random" && cocktail[0]?.name) {
       const newUrl = cocktail[0].name.replace(/ /gi, "+");

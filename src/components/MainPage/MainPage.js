@@ -4,6 +4,7 @@ import { useViewRegion } from "./MainPageReducer/ViewRegionContext.js";
 import { ScrollEffect } from "./ScrollEffect";
 import Container from "./Container";
 function MainPage() {
+  //oldFasionImagesOriginal saves information of every stage image.
   let oldFasionImagesOriginal = {
     bitter: {
       imageUrl: [],
@@ -64,7 +65,7 @@ function MainPage() {
   };
   const [{ oldFasionImages }, dispatch] = useViewRegion();
   const scrollingElRef = useRef(null);
-  // const container1 = useRef(null);
+  //Get functions from ScrollEffect.js which control style and switch image when scrolling.
   const {
     scrollEffectContainer1,
     scrollEffectContainer2,
@@ -88,8 +89,8 @@ function MainPage() {
     });
   }, []);
 
+  //Initialize viewRegion
   useEffect(() => {
-    //Initialize viewRegion
     dispatch({
       type: "SET_VIEW_REGION",
       item: {
@@ -98,6 +99,7 @@ function MainPage() {
     });
   }, [scrollingElRef]);
 
+  //Load all oldfashion production images from folder.
   function loadImageListFromEachFolder(imgObject) {
     for (const [key, imageName] of Object.entries(imgObject)) {
       for (let i = 0; i < imageName.amount; i++) {
@@ -108,10 +110,7 @@ function MainPage() {
         const imgClassName = setImgClassName(key);
         const imgId = setImgId(key);
         newImg.src = imageUrl;
-        // newImg.className = `main-page-gif-image ${imgClassName}`;
-        // newImg.id = imgId;
         imageName.imageUrl.push(imageUrl);
-        // imageName.imageElement.push(newImg);
       }
     }
   }
@@ -161,6 +160,7 @@ function MainPage() {
   return (
     <main className="main-page-main-region">
       <div className="scroll-view" ref={scrollingElRef}></div>
+      {/* content of container 1 */}
       <Container containerIndex={1}>
         {(scrollPercent) => (
           <>
@@ -199,6 +199,7 @@ function MainPage() {
           </>
         )}
       </Container>
+      {/* content of container 2 */}
       <Container containerIndex={2}>
         {(scrollPercent) => (
           <>
@@ -211,9 +212,6 @@ function MainPage() {
                     scrollPercent
                   )}
                 ></div>
-                {/* {console.log("oldFasionImages.sugarCube.imageElement[7]")}
-                {console.log(oldFasionImages?.sugarCube)}
-                {oldFasionImages?.sugarCube?.imageElement[7]} */}
                 <img
                   id="container-2-img-1"
                   className="main-page-gif-image container-2-img"
@@ -348,6 +346,7 @@ function MainPage() {
           </>
         )}
       </Container>
+      {/* content of container 3 */}
       <Container containerIndex={3}>
         {(scrollPercent) => (
           <>
@@ -370,6 +369,7 @@ function MainPage() {
           </>
         )}
       </Container>
+      {/* content of container 4 */}
       <Container containerIndex={4}>
         {(scrollPercent) => (
           <>
@@ -392,6 +392,7 @@ function MainPage() {
           </>
         )}
       </Container>
+      {/* content of container 5 */}
       <Container containerIndex={5}>
         {(scrollPercent) => (
           <>
@@ -414,6 +415,7 @@ function MainPage() {
           </>
         )}
       </Container>
+      {/* content of container 6 */}
       <Container containerIndex={6}>
         {(scrollPercent) => (
           <>

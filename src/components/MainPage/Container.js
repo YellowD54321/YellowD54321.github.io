@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import "./mainPage.css";
 import { useViewRegion } from "./MainPageReducer/ViewRegionContext.js";
 
+//Build Contaner content
 function Container(props) {
   const { containerIndex, children } = props;
   const [scrollPercent, setScrollPercent] = useState(0);
   const [{ oldFasionImages, viewRegion }] = useViewRegion();
   const container = useRef(null);
 
+  //Listen scroll event of window.
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -15,6 +17,8 @@ function Container(props) {
     };
   }, [viewRegion, container, oldFasionImages]);
 
+  //Calculate proportion of ViewRegion and current container.
+  //view region is always 100vh.
   const handleScroll = () => {
     if (!!container?.current && !!viewRegion) {
       const containerRect = container.current.getBoundingClientRect();

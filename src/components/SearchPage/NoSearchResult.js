@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import CocktailList from "../CocktailList/CocktailList.js";
 import "./NoSearchResult.css";
 import { useStateValue } from "../Reducer/StateProvider";
+
+//Build Find No Result page content.
 function NoSearchResult(props) {
   const [{ searchText, searchBtnCount }] = useStateValue();
   const [gifImgUrl, setGifImgUrl] = useState("");
@@ -25,6 +27,8 @@ function NoSearchResult(props) {
   const randomCocktailUrl = `https://www.thecocktaildb.com/api/json/v1/1/random.php`;
   let randomCocktail = null;
 
+  //Fetch gif image data from giphy api.
+  //Fetch random cocktail data from cocktail api.
   useEffect(() => {
     getDataFromAPI(lookingForGifUrl).then((data) => {
       if (!data) {

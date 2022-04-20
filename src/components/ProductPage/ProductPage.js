@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useStateValue } from "../Reducer/StateProvider";
 import { useNavigate } from "react-router-dom";
 
+//Build single cocktail page content.
 function ProductPage() {
   const [{ cocktailInfo }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function ProductPage() {
   const searchTextForAPI =
     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + urlKeyWords;
 
+  //Fetch API data.
   const getDataFromAPI = async (ApiUrl) => {
     try {
       const url = ApiUrl;
@@ -23,6 +25,35 @@ function ProductPage() {
       console.error(err);
     }
   };
+
+  cocktail = cocktailInfo;
+
+  //Fetch data from api.
+  useEffect(() => {
+    if (!cocktailInfo?.name) {
+      console.log("cocktailInfo?.name is false");
+      getDataFromAPI(searchTextForAPI).then((data) => {
+        const drinks = data?.drinks;
+        if (!drinks) {
+          console.log("There is no result from cocktail API.");
+          return false;
+        }
+        const cocktailInfoFromAPI = getCocktailInfo(drinks);
+        const result = cocktailInfoFromAPI.filter(
+          (drink) => drink.name.toLowerCase() === urlKeyWords.toLowerCase()
+        )[0];
+        dispatch({
+          type: "COCKTAIL_INFO",
+          item: {
+            cocktailInfo: result,
+          },
+        });
+      });
+    }
+  }, []);
+
+  //Adjust api data.
+  //Only remain data which are useful.
   const getCocktailInfo = (drinks) => {
     let reslut = [];
     for (let i = 0; i < drinks.length; i++) {
@@ -51,35 +82,11 @@ function ProductPage() {
     return reslut;
   };
 
-  cocktail = cocktailInfo;
-
-  useEffect(() => {
-    if (!cocktailInfo?.name) {
-      console.log("cocktailInfo?.name is false");
-      getDataFromAPI(searchTextForAPI).then((data) => {
-        const drinks = data?.drinks;
-        if (!drinks) {
-          console.log("There is no result from cocktail API.");
-          return false;
-        }
-        const cocktailInfoFromAPI = getCocktailInfo(drinks);
-        const result = cocktailInfoFromAPI.filter(
-          (drink) => drink.name.toLowerCase() === urlKeyWords.toLowerCase()
-        )[0];
-        dispatch({
-          type: "COCKTAIL_INFO",
-          item: {
-            cocktailInfo: result,
-          },
-        });
-      });
-    }
-  }, []);
-
   if (!cocktail?.name) {
     return null;
   }
 
+  //Set a second image as ground image to make it as sketch type.
   const imgBackgroundStyle = {
     backgroundImage: `url(${cocktail?.image}), url(${cocktail?.image})`,
     backgroundSize: "cover",
@@ -90,6 +97,7 @@ function ProductPage() {
     boxShadow: "inset 0 0 0 1px black",
   };
 
+  //DOM of ingredients.
   const allIngredients = () => {
     let ingredients = cocktail?.ingredients;
     const ingredientList = ingredients.map((ingredient, index) => {
