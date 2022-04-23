@@ -16,7 +16,7 @@ Now is available on [My Page](https://yellowd54321.github.io/).
 ## content
 
 ### Random Cocktail
-Simplely click on the `Dice` to get a random cocktail!\
+Simplely click on the `Dice` icon to get a random cocktail!\
 Alternatively type `random` in the search bar to search a random one.
 
 ### Already know cocktail name?
