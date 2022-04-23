@@ -130,9 +130,6 @@ function MainPage() {
         imageName.loaded[i] = false;
         newImg.onload = function () {
           imageName.loaded[i] = true;
-          console.log(
-            imageName.fileName + i.toString() + " = " + imageName.loaded[i]
-          );
           if (imageName.loaded.every((load) => load === true)) {
             setLoadedImage((preState) => {
               return {
@@ -148,9 +145,9 @@ function MainPage() {
     }
   }
 
+  //Check every class of images are loaded.
   useEffect(() => {
     console.log("Loading check.");
-    console.log("loadedImage");
     console.log(loadedImage);
     let allLoaded = true;
     for (const [key, value] of Object.entries(loadedImage)) {
@@ -160,64 +157,33 @@ function MainPage() {
       console.log("LOADING FINISHED!");
       setPreLoadImageFinish(true);
     }
+    return () => {
+      setPreLoadImageFinish(false);
+    };
   }, [loadedImage]);
 
+  let loadingGif = null;
+
+  //If images are not loading yet, show a gif to make user understand that there are still some images need to be loaded.
   if (!preLoadImageFinish) {
-    return (
+    loadingGif = (
       <div className="oldFashionLoadingRegion">
         <img
           src={oldFashionLoadingGif}
           alt="LOADING......"
           className="oldFashionLoadingGif"
         />
+        <h2>LOADING IMAGE......</h2>
       </div>
     );
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "unset";
   }
-
-  // function setImgClassName(imageName) {
-  //   switch (imageName) {
-  //     case "sugarCube":
-  //       return "container-2-img";
-  //     case "bitter":
-  //       return "container-2-img";
-  //     case "crush":
-  //       return "container-2-img";
-  //     case "bourbon":
-  //       return "container-2-img";
-  //     case "iceCube":
-  //       return "container-3-img";
-  //     case "pour":
-  //       return "container-4-img";
-  //     case "peel":
-  //       return "container-5-img";
-  //     default:
-  //       return "";
-  //   }
-  // }
-
-  // function setImgId(imageName) {
-  //   switch (imageName) {
-  //     case "sugarCube":
-  //       return "container-2-img-1";
-  //     case "bitter":
-  //       return "container-2-img-2";
-  //     case "crush":
-  //       return "container-2-img-3";
-  //     case "bourbon":
-  //       return "container-2-img-4";
-  //     case "iceCube":
-  //       return "container-3-img-1";
-  //     case "pour":
-  //       return "container-4-img-1";
-  //     case "peel":
-  //       return "container-5-img-1";
-  //     default:
-  //       return "";
-  //   }
-  // }
 
   return (
     <main className="main-page-main-region">
+      {loadingGif}
       <div className="scroll-view" ref={scrollingElRef}></div>
       {/* content of container 1 */}
       <Container containerIndex={1}>
