@@ -3,6 +3,7 @@ import "./mainPage.css";
 import { useViewRegion } from "./MainPageReducer/ViewRegionContext.js";
 import { ScrollEffect } from "./ScrollEffect";
 import Container from "./Container";
+import oldFashionLoadingGif from "../../assets/images/gif/oldFashionImageLoading.gif";
 function MainPage() {
   //oldFasionImagesOriginal saves information of every stage image.
   let oldFasionImagesOriginal = {
@@ -12,6 +13,7 @@ function MainPage() {
       amount: 93,
       fileName: "bitter",
       startNumber: 5695,
+      loaded: [],
     },
     bourbon: {
       imageUrl: [],
@@ -19,6 +21,7 @@ function MainPage() {
       amount: 123,
       fileName: "bourbon",
       startNumber: 6366,
+      loaded: [],
     },
     crush: {
       imageUrl: [],
@@ -26,6 +29,7 @@ function MainPage() {
       amount: 73,
       fileName: "crush",
       startNumber: 5999,
+      loaded: [],
     },
     finish: {
       imageUrl: [],
@@ -33,6 +37,7 @@ function MainPage() {
       amount: 1,
       fileName: "finish",
       startNumber: 1,
+      loaded: [],
     },
     iceCube: {
       imageUrl: [],
@@ -40,6 +45,7 @@ function MainPage() {
       amount: 68,
       fileName: "ice cube",
       startNumber: 7166,
+      loaded: [],
     },
     peel: {
       imageUrl: [],
@@ -47,6 +53,7 @@ function MainPage() {
       amount: 77,
       fileName: "peel",
       startNumber: 7876,
+      loaded: [],
     },
     pour: {
       imageUrl: [],
@@ -54,6 +61,7 @@ function MainPage() {
       amount: 100,
       fileName: "pour",
       startNumber: 7275,
+      loaded: [],
     },
     sugarCube: {
       imageUrl: [],
@@ -61,8 +69,20 @@ function MainPage() {
       amount: 37,
       fileName: "test",
       startNumber: 5419,
+      loaded: [],
     },
   };
+  const [loadedImage, setLoadedImage] = useState({
+    bitter: false,
+    bourbon: false,
+    crush: false,
+    finish: false,
+    iceCube: false,
+    peel: false,
+    pour: false,
+    sugarCube: false,
+  });
+  const [preLoadImageFinish, setPreLoadImageFinish] = useState(false);
   const [{ oldFasionImages }, dispatch] = useViewRegion();
   const scrollingElRef = useRef(null);
   //Get functions from ScrollEffect.js which control style and switch image when scrolling.
@@ -107,55 +127,94 @@ function MainPage() {
           imageName.startNumber + i
         }.png`;
         const newImg = new Image();
-        const imgClassName = setImgClassName(key);
-        const imgId = setImgId(key);
+        imageName.loaded[i] = false;
+        newImg.onload = function () {
+          imageName.loaded[i] = true;
+          console.log(
+            imageName.fileName + i.toString() + " = " + imageName.loaded[i]
+          );
+          if (imageName.loaded.every((load) => load === true)) {
+            setLoadedImage((preState) => {
+              return {
+                ...preState,
+                [key]: true,
+              };
+            });
+          }
+        };
         newImg.src = imageUrl;
         imageName.imageUrl.push(imageUrl);
       }
     }
   }
 
-  function setImgClassName(imageName) {
-    switch (imageName) {
-      case "sugarCube":
-        return "container-2-img";
-      case "bitter":
-        return "container-2-img";
-      case "crush":
-        return "container-2-img";
-      case "bourbon":
-        return "container-2-img";
-      case "iceCube":
-        return "container-3-img";
-      case "pour":
-        return "container-4-img";
-      case "peel":
-        return "container-5-img";
-      default:
-        return "";
+  useEffect(() => {
+    console.log("Loading check.");
+    console.log("loadedImage");
+    console.log(loadedImage);
+    let allLoaded = true;
+    for (const [key, value] of Object.entries(loadedImage)) {
+      if (value === false) allLoaded = false;
     }
+    if (allLoaded === true) {
+      console.log("LOADING FINISHED!");
+      setPreLoadImageFinish(true);
+    }
+  }, [loadedImage]);
+
+  if (!preLoadImageFinish) {
+    return (
+      <div className="oldFashionLoadingRegion">
+        <img
+          src={oldFashionLoadingGif}
+          alt="LOADING......"
+          className="oldFashionLoadingGif"
+        />
+      </div>
+    );
   }
 
-  function setImgId(imageName) {
-    switch (imageName) {
-      case "sugarCube":
-        return "container-2-img-1";
-      case "bitter":
-        return "container-2-img-2";
-      case "crush":
-        return "container-2-img-3";
-      case "bourbon":
-        return "container-2-img-4";
-      case "iceCube":
-        return "container-3-img-1";
-      case "pour":
-        return "container-4-img-1";
-      case "peel":
-        return "container-5-img-1";
-      default:
-        return "";
-    }
-  }
+  // function setImgClassName(imageName) {
+  //   switch (imageName) {
+  //     case "sugarCube":
+  //       return "container-2-img";
+  //     case "bitter":
+  //       return "container-2-img";
+  //     case "crush":
+  //       return "container-2-img";
+  //     case "bourbon":
+  //       return "container-2-img";
+  //     case "iceCube":
+  //       return "container-3-img";
+  //     case "pour":
+  //       return "container-4-img";
+  //     case "peel":
+  //       return "container-5-img";
+  //     default:
+  //       return "";
+  //   }
+  // }
+
+  // function setImgId(imageName) {
+  //   switch (imageName) {
+  //     case "sugarCube":
+  //       return "container-2-img-1";
+  //     case "bitter":
+  //       return "container-2-img-2";
+  //     case "crush":
+  //       return "container-2-img-3";
+  //     case "bourbon":
+  //       return "container-2-img-4";
+  //     case "iceCube":
+  //       return "container-3-img-1";
+  //     case "pour":
+  //       return "container-4-img-1";
+  //     case "peel":
+  //       return "container-5-img-1";
+  //     default:
+  //       return "";
+  //   }
+  // }
 
   return (
     <main className="main-page-main-region">

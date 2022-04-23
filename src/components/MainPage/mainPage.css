@@ -2,6 +2,14 @@
     /* position: relative; */
     background-color: black;
   }
+
+  .oldFashionLoadingRegion {
+    display: flex;
+  }
+
+  .oldFashionLoadingGif{
+    margin: 0 auto;
+  }
   
   .scroll-view {
     position: sticky;
