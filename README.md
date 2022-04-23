@@ -16,6 +16,7 @@ Now is available on [My Page](https://yellowd54321.github.io/).
 ## content
 
 ### Random Cocktail
+<img src="./src/assets/images/icons/dice-icon.png" alt="Dice" width="40"/>
 Simplely click on the ![Dice](./src/assets/images/icons/dice-icon.png width: 40px) to get a random cocktail!\
 Alternatively type `random` in the search bar to search a random one.
 
