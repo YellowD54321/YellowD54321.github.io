@@ -24,5 +24,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 - murmur
 
-![Next Drink Logo](./src/assets/Logo/Logo.png)
+![Next Drink Logo](./src/assets/images/Logo/Logo.png)
 ![Next Drink Logo](https://github.com/YellowD54321/YellowD54321.github.io/blob/master/src/assets/images/Logo/Logo.png)
