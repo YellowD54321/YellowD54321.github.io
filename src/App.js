@@ -17,6 +17,7 @@ import ProductPage from "./components/ProductPage/ProductPage.js";
 import LoginPage from "./components/LoginPage/LoginPage.js";
 import SignUpPage from "./components/LoginPage/SignUpPage.js";
 import FavouritePage from "./components/FavouritePage/FavouritePage.js";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
   //Combine Header and Main Page
@@ -82,12 +83,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<WholeMainPage />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
+        {/* <Route path="/" element={<WholeMainPage />}></Route>
         <Route path="/searchPage/*" element={<WholeSearchPage />}></Route>
         <Route path="/productPage/*" element={<WholeProductPage />}></Route>
         <Route path="/favouritePage" element={<WholeFavouritePage />}></Route>
         <Route path="/loginPage" element={<LoginPage />}></Route>
-        <Route path="/signUpPage" element={<SignUpPage />}></Route>
+        <Route path="/signUpPage" element={<SignUpPage />}></Route> */}
       </Routes>
     </Router>
   );
