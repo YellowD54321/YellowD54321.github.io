@@ -1,9 +1,11 @@
 import "./homePage.css";
 import React, { useState, useRef } from "react";
-import nextDrinkIconImage from "../../assets/images/Logo/Logo-icon-only.png";
-import pomodorosIconImage from "../../assets/images/Logo/pomodoros-logo-icon-only.png";
+import nextDrinkIconImage from "../../assets/images/logo/logo-icon-only.png";
+import pomodorosIconImage from "../../assets/images/logo/pomodoros-logo-icon-only.png";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
   const rotateRegionRef = useRef(null);
   const avatarRef = useRef(null);
   const nextDrinkRef = useRef(null);
@@ -34,11 +36,13 @@ function HomePage() {
   }
 
   function goToNextDrinkMainPage() {
-    window.open(currentUrl + "nextDrink/mainPage", "_blank").focus();
+    // window.open(currentUrl + "nextDrink/mainPage", "_blank").focus();
+    navigate("/nextDrink/mainPage");
   }
 
   function goToWeatherPomodorosPage() {
-    window.open(currentUrl + "weatherPomodoros/pomodoros", "_blank").focus();
+    // window.open(currentUrl + "weatherPomodoros/pomodoros", "_blank").focus();.
+    navigate("/weatherPomodoros/pomodoros");
   }
 
   return (
