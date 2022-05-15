@@ -103,9 +103,6 @@ function App() {
         ></Route>
         <Route path="/nextDrink/loginPage" element={<LoginPage />}></Route>
         <Route path="/nextDrink/signUpPage" element={<SignUpPage />}></Route>
-      </Routes>
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/weatherPomodoros/pomodoros"
           element={<Pomodoros />}
