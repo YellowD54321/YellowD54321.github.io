@@ -53,14 +53,42 @@
     cursor: pointer;
 }
 
-.home-page-next-drink {
+.home-page-project-avatar {
     position:absolute;
-    top: 0px;
-    right: 0px;
-    background-color: var(--web-background-color);
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    /* border-radius: 50%; */
+    display: flex;
+    align-items:center;
+    justify-content: center;
     animation: 10s rotate-image infinite linear;
     cursor: pointer;
+}
+.home-page-next-drink {
+    top: 0px;
+    right: 0px;
+}
+.home-page-pomodoros {
+    bottom: 0px;
+    left: 0px;
+}
+
+.home-page-project-avatar-image {
+    width: 100%;
+    border-radius: 50%;
+    transition-duration: .5s;
+}
+
+.home-page-next-drink-image {
+    background-color: var(--web-background-color);
+}
+
+.home-page-pomodoros-image {
+    background-color: white;
+}
+
+.home-page-project-avatar-image:hover {
+    transform: scale(1.5);
 }
 
 @keyframes rotate-image {
@@ -74,10 +102,6 @@
         transform: rotate(-360deg)
     }
   }
-
-.home-page-next-drink-image {
-    width: 100px;
-}
 
 .home-page-stop-rotate {
     animation-play-state: paused;

@@ -18,6 +18,7 @@ import LoginPage from "./components/LoginPage/LoginPage.js";
 import SignUpPage from "./components/LoginPage/SignUpPage.js";
 import FavouritePage from "./components/FavouritePage/FavouritePage.js";
 import HomePage from "./components/HomePage/HomePage";
+import Pomodoros from "./components/WeatherPomodoros/PomodorosPage/PorodomosPage";
 
 function App() {
   //Combine Header and Main Page
@@ -82,14 +83,33 @@ function App() {
   }, []);
   return (
     <Router>
+      {/* <Routes>
+      </Routes> */}
+
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-        {/* <Route path="/" element={<WholeMainPage />}></Route>
-        <Route path="/searchPage/*" element={<WholeSearchPage />}></Route>
-        <Route path="/productPage/*" element={<WholeProductPage />}></Route>
-        <Route path="/favouritePage" element={<WholeFavouritePage />}></Route>
-        <Route path="/loginPage" element={<LoginPage />}></Route>
-        <Route path="/signUpPage" element={<SignUpPage />}></Route> */}
+        <Route path="/nextDrink/mainPage" element={<WholeMainPage />}></Route>
+        <Route
+          path="/nextDrink/searchPage/*"
+          element={<WholeSearchPage />}
+        ></Route>
+        <Route
+          path="/nextDrink/productPage/*"
+          element={<WholeProductPage />}
+        ></Route>
+        <Route
+          path="/nextDrink/favouritePage"
+          element={<WholeFavouritePage />}
+        ></Route>
+        <Route path="/nextDrink/loginPage" element={<LoginPage />}></Route>
+        <Route path="/nextDrink/signUpPage" element={<SignUpPage />}></Route>
+      </Routes>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route
+          path="/weatherPomodoros/pomodoros"
+          element={<Pomodoros />}
+        ></Route>
       </Routes>
     </Router>
   );

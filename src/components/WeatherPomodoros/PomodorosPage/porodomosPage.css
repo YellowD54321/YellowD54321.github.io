@@ -1,0 +1,34 @@
+.pomodoros-page-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.pomodoros-page-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 200px;
+}
+
+.pomodoros-page-title {
+    font-size: 3rem;
+    color: aqua;
+}
+
+.pomodoros-page-timers {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.pomodoros-page-timers > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pomodoros-page-record-list {
+}

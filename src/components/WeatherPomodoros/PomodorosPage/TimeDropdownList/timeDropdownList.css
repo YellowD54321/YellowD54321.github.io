@@ -1,0 +1,8 @@
+.time-dropdown-list-main {
+    display: flex;
+    flex-direction: row;
+}
+
+.timeSetter-working-dropdown {
+    margin-right: 20px;
+}

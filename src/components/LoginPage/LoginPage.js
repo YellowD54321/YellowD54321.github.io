@@ -23,7 +23,7 @@ function LoginPage() {
         console.log("LOGIN SUCCESSFUL!");
         console.log("user: ");
         console.log(user);
-        navigate("/");
+        navigate("/nextDrink/mainPage");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -49,7 +49,7 @@ function LoginPage() {
 
   //Go to sign up page.
   function goToSignUpPage() {
-    navigate("/signUpPage");
+    navigate("/nextDrink/signUpPage");
   }
 
   return (

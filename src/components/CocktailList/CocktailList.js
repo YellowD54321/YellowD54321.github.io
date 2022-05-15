@@ -103,7 +103,7 @@ function CocktailList(props) {
         cocktailInfo: cocktailInfo,
       },
     });
-    navigate(`/productPage/search?q=${cocktailName}`);
+    navigate(`/nextDrink/productPage/search?q=${cocktailName}`);
   };
 
   return <div className={props.class}>{eachCocktail}</div>;

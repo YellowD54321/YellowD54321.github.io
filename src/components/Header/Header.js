@@ -50,7 +50,7 @@ function Header() {
         btnCounter: btnCounter,
       },
     });
-    navigate(`/searchPage/search?q=${searchInputUrl}`);
+    navigate(`/nextDrink/searchPage/search?q=${searchInputUrl}`);
   };
 
   //Be albe to press Enter to start searching.
@@ -64,7 +64,7 @@ function Header() {
   //Save search text as 'random' for searching a random cocktail.
   function startRandomDice() {
     const btnCounter = searchBtnCount >= 0 ? searchBtnCount + 1 : 0;
-    navigate("/searchPage/search?=random");
+    navigate("/nextDrink/searchPage/search?=random");
     dispatch({
       type: "SEARCH_TEXT",
       item: {
@@ -103,12 +103,12 @@ function Header() {
 
   //Go to log in page.
   function handleLogIn() {
-    navigate("/loginPage");
+    navigate("/nextDrink/loginPage");
   }
 
   //Go to home page when logo image is clicked.
   function handleLogoClick() {
-    navigate("/");
+    navigate("/nextDrink/mainPage");
   }
 
   //Toggle class of account button to change it's style when it is clicked.
@@ -139,7 +139,7 @@ function Header() {
 
   //Go to favourite page when favourite image is clicked.
   function handleFavouriteClick() {
-    navigate("/favouritePage");
+    navigate("/nextDrink/favouritePage");
   }
 
   return (

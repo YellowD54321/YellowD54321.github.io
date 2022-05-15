@@ -119,7 +119,7 @@ function SearchPage() {
             text: "",
           },
         });
-        navigate(`/searchPage/search?q=${newUrl}`);
+        navigate(`/nextDrink/searchPage/search?q=${newUrl}`);
       }
     }
   }, [cocktail]);
