@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/yellowd54321.github.io/static/css/main.47161136.css",
-    "main.js": "/yellowd54321.github.io/static/js/main.8ae4eba9.js",
-    "static/js/787.effb007a.chunk.js": "/yellowd54321.github.io/static/js/787.effb007a.chunk.js",
-    "static/media/oldFashionImageLoading.gif": "/yellowd54321.github.io/static/media/oldFashionImageLoading.067aa543da915081e282.gif",
-    "static/media/Logo.png": "/yellowd54321.github.io/static/media/Logo.4cb57c3a1c6531df107d.png",
-    "static/media/pomodoros-logo-icon-only.png": "/yellowd54321.github.io/static/media/pomodoros-logo-icon-only.fbcd4415c2d0428429e3.png",
-    "index.html": "/yellowd54321.github.io/index.html",
-    "main.47161136.css.map": "/yellowd54321.github.io/static/css/main.47161136.css.map",
-    "main.8ae4eba9.js.map": "/yellowd54321.github.io/static/js/main.8ae4eba9.js.map",
-    "787.effb007a.chunk.js.map": "/yellowd54321.github.io/static/js/787.effb007a.chunk.js.map"
+    "main.css": "/YellowD54321.github.io/static/css/main.47161136.css",
+    "main.js": "/YellowD54321.github.io/static/js/main.6fd21a71.js",
+    "static/js/787.effb007a.chunk.js": "/YellowD54321.github.io/static/js/787.effb007a.chunk.js",
+    "static/media/oldFashionImageLoading.gif": "/YellowD54321.github.io/static/media/oldFashionImageLoading.067aa543da915081e282.gif",
+    "static/media/Logo.png": "/YellowD54321.github.io/static/media/Logo.4cb57c3a1c6531df107d.png",
+    "static/media/pomodoros-logo-icon-only.png": "/YellowD54321.github.io/static/media/pomodoros-logo-icon-only.fbcd4415c2d0428429e3.png",
+    "index.html": "/YellowD54321.github.io/index.html",
+    "main.47161136.css.map": "/YellowD54321.github.io/static/css/main.47161136.css.map",
+    "main.6fd21a71.js.map": "/YellowD54321.github.io/static/js/main.6fd21a71.js.map",
+    "787.effb007a.chunk.js.map": "/YellowD54321.github.io/static/js/787.effb007a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.47161136.css",
-    "static/js/main.8ae4eba9.js"
+    "static/js/main.6fd21a71.js"
   ]
 }
