@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { db } from "./firebase";
 import { setDoc, getDoc, collection, doc } from "firebase/firestore";
@@ -82,10 +83,7 @@ function App() {
     });
   }, []);
   return (
-    <Router>
-      {/* <Routes>
-      </Routes> */}
-
+    <HashRouter>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/nextDrink/mainPage" element={<WholeMainPage />}></Route>
@@ -108,7 +106,7 @@ function App() {
           element={<Pomodoros />}
         ></Route>
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }
 

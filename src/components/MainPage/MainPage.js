@@ -99,8 +99,8 @@ function MainPage() {
   useEffect(() => {
     //Initialize oldFasionImages
     loadImageListFromEachFolder(oldFasionImagesOriginal);
-    console.log("oldFasionImagesOriginal");
-    console.log(oldFasionImagesOriginal);
+    // console.log("oldFasionImagesOriginal");
+    // console.log(oldFasionImagesOriginal);
     dispatch({
       type: "SET_IMAGE",
       item: {
@@ -147,8 +147,8 @@ function MainPage() {
 
   //Check every class of images are loaded.
   useEffect(() => {
-    console.log("Loading check.");
-    console.log(loadedImage);
+    // console.log("Loading check.");
+    // console.log(loadedImage);
     let allLoaded = true;
     for (const [key, value] of Object.entries(loadedImage)) {
       if (value === false) allLoaded = false;

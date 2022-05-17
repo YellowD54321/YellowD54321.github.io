@@ -36,13 +36,13 @@ function HomePage() {
   }
 
   function goToNextDrinkMainPage() {
-    // window.open(currentUrl + "nextDrink/mainPage", "_blank").focus();
-    navigate("/nextDrink/mainPage");
+    window.open(currentUrl + "#/nextDrink/mainPage", "_blank").focus();
+    // navigate("/nextDrink/mainPage");
   }
 
   function goToWeatherPomodorosPage() {
-    // window.open(currentUrl + "weatherPomodoros/pomodoros", "_blank").focus();.
-    navigate("/weatherPomodoros/pomodoros");
+    window.open(currentUrl + "#/weatherPomodoros/pomodoros", "_blank").focus();
+    // navigate("/weatherPomodoros/pomodoros");
   }
 
   return (
@@ -60,28 +60,28 @@ function HomePage() {
               className="home-page-project-avatar home-page-next-drink"
               title="Go to Next Drink Website"
               ref={nextDrinkRef}
-              onMouseOver={handleMouseOverImage}
-              onMouseOut={handleMouseOutImage}
-              onClick={goToNextDrinkMainPage}
             >
               <img
                 className="home-page-project-avatar-image home-page-next-drink-image"
                 src={nextDrinkIconImage}
                 alt=""
+                onMouseOver={handleMouseOverImage}
+                onMouseOut={handleMouseOutImage}
+                onClick={goToNextDrinkMainPage}
               />
             </div>
             <div
               className="home-page-project-avatar home-page-pomodoros"
               title="Go to Weather Pomodoros Website(Still Building)"
               ref={weatherPomodorosRef}
-              onMouseOver={handleMouseOverImage}
-              onMouseOut={handleMouseOutImage}
-              onClick={goToWeatherPomodorosPage}
             >
               <img
                 className="home-page-project-avatar-image home-page-pomodoros-image"
                 src={pomodorosIconImage}
                 alt=""
+                onMouseOver={handleMouseOverImage}
+                onMouseOut={handleMouseOutImage}
+                onClick={goToWeatherPomodorosPage}
               />
             </div>
           </div>

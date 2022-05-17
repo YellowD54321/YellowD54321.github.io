@@ -1,3 +1,8 @@
+:root {
+    --home-page-rotate-region-width: 70vw;
+    --home-page-rotate-region-height: 70vw;
+}
+
 .home-page-body {
     display: flex;
     align-items: center;
@@ -8,7 +13,7 @@
 }
 
 .home-page-main {
-    width: 600px;
+    width: 100vw;
     display: flex;
     justify-content: center;
 }
@@ -20,12 +25,22 @@
 
 .home-page-rotate-region {
     position: relative;
-    width: 350px;
-    height: 350px;
-    top: calc(50% - 175px);
-    right: calc(-50% + 175px);
+    width: var(--home-page-rotate-region-width);
+    height: var(--home-page-rotate-region-height);
+    max-width: 350px;
+    max-height: 350px;
+    top: calc(50% - calc(var(--home-page-rotate-region-width) / 2));
+    right: calc(-50% + calc(var(--home-page-rotate-region-height) / 2));
     animation: 10s rotate-all-image infinite linear;
 }
+
+@media screen and (min-width: 500px) {
+    .home-page-rotate-region {
+        top: calc(50% - 175px);
+        right: calc(-50% + 175px);
+    }
+}
+
 @keyframes rotate-all-image {
     0% {
         transform: rotate(0deg)
@@ -43,8 +58,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100px;
     width: 100px;
+    height: 100px;
     position: absolute;
     top: calc(50% - 50px);
     right: calc(50% - 50px);
@@ -55,8 +70,10 @@
 
 .home-page-project-avatar {
     position:absolute;
-    width: 100px;
-    height: 100px;
+    width: 20vw;
+    height: 20vw;
+    max-height: 100px;
+    max-width: 100px;
     /* border-radius: 50%; */
     display: flex;
     align-items:center;
