@@ -1,12 +1,13 @@
-import "./porodomosPage.css";
+import "./pomodorosPage.css";
 import React, { useState, useRef } from "react";
 import {
   WorkingTimeDropdownList,
   RestingTimeDropdownList,
 } from "./TimeDropdownList/TimeDropdownList";
-import { StartButton, StopButton } from "./Button/Button";
+import { StartButton } from "./Button/Button";
 import { WorkingTimer, RestingTimer } from "./TimeCounter/TimeCounter";
 import WorkingContent from "./WorkingContent/WorkingContent";
+import TodayWeather from "./TodayWeather/TodayWeather";
 
 function PorodomosPage() {
   const COUNT_STATE = {
@@ -105,7 +106,7 @@ function PorodomosPage() {
       return null;
     }
     return (
-      <div>
+      <div data-testid="record-list">
         <h3>Working Content</h3>
         <p>{workingContentText}</p>
         <h3>Working Duration</h3>
@@ -119,6 +120,9 @@ function PorodomosPage() {
   return (
     <div className="pomodoros-page-body">
       <div className="pomodoros-page-main">
+        <div className="pomodoros-page-today-weather-icon">
+          <TodayWeather />
+        </div>
         <h2 className="pomodoros-page-title">
           This project is still building.
         </h2>

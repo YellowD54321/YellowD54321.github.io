@@ -19,7 +19,7 @@ import LoginPage from "./components/LoginPage/LoginPage.js";
 import SignUpPage from "./components/LoginPage/SignUpPage.js";
 import FavouritePage from "./components/FavouritePage/FavouritePage.js";
 import HomePage from "./components/HomePage/HomePage";
-import Pomodoros from "./components/WeatherPomodoros/PomodorosPage/PorodomosPage";
+import Pomodoros from "./components/WeatherPomodoros/PomodorosPage/PomodorosPage";
 
 function App() {
   //Combine Header and Main Page
