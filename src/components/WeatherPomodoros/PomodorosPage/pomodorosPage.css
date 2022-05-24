@@ -1,27 +1,48 @@
 .pomodoros-page-body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    width: 100vw;
+    height: 100vh;
+    padding-top: 10vh;
+}
+
+.pomodoros-page-clock-page {
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
 }
 
 .pomodoros-page-main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 200px;
+    width: auto;
+    /* margin-right: 200px; */
 }
 
 .pomodoros-page-title {
     font-size: 3rem;
     color: aqua;
+    text-align: center;
 }
 
 .pomodoros-page-timers {
     display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content:space-between;
     margin-bottom: 50px;
+    border: 1px pink solid;
+}
+
+@media screen and (max-width: 767px) {
+    .pomodoros-page-timers {
+        flex-direction: column;
+    }
 }
 
 .pomodoros-page-timers > div {
@@ -31,4 +52,14 @@
 }
 
 .pomodoros-page-record-list {
+}
+
+.pomodoros-page-analystic-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pomodoros-page-hide {
+    display: none;
 }

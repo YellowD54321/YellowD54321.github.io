@@ -1,3 +1,13 @@
+.timer-clock {
+    margin: 0;
+}
+
+.working-timer-clock {
+    background-color: var(--web-background-color-lighter);
+    padding: 50px;
+    font-size: 3rem;
+}
+
 .timer-clock-negative {
     color: red;
 }

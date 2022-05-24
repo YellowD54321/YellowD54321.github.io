@@ -8,12 +8,17 @@ import { StartButton } from "./Button/Button";
 import { WorkingTimer, RestingTimer } from "./TimeCounter/TimeCounter";
 import WorkingContent from "./WorkingContent/WorkingContent";
 import TodayWeather from "./TodayWeather/TodayWeather";
+import AnalysticPage from "./AnalysticPage/AnalysticPage";
 
 function PorodomosPage() {
   const COUNT_STATE = {
     STOP: "STOP",
     WORK: "WORK",
     REST: "REST",
+  };
+  const PAGES = {
+    CLOCK: "CLOCK",
+    ANALYSTIC: "ANALYsTIC",
   };
   const defaultWorkingTime = 25;
   const defaultRestingTime = 5;
@@ -27,6 +32,7 @@ function PorodomosPage() {
   const [workingContentText, setWorkingContentText] = useState("");
   const [finalWorkingtime, setFinalWorkingtime] = useState(0);
   const [finalRestingtime, setFinalRestingtime] = useState(0);
+  const [switchPage, setSwitchPage] = useState(PAGES.CLOCK);
   let hasFinished = useRef(false);
 
   function getWorkingTimeValue(timeValue) {
@@ -117,55 +123,96 @@ function PorodomosPage() {
     );
   }
 
+  function handleSwitchPage() {
+    switch (switchPage) {
+      case PAGES.CLOCK:
+        setSwitchPage(PAGES.ANALYSTIC);
+        break;
+      case PAGES.ANALYSTIC:
+        setSwitchPage(PAGES.CLOCK);
+        break;
+      default:
+        setSwitchPage(PAGES.CLOCK);
+        break;
+    }
+  }
+
   return (
     <div className="pomodoros-page-body">
-      <div className="pomodoros-page-main">
-        <div className="pomodoros-page-today-weather-icon">
-          <TodayWeather />
-        </div>
-        <h2 className="pomodoros-page-title">
-          This project is still building.
-        </h2>
-        <div className="pomodoros-page-timers">
-          <div className="pomodoros-page-working-region">
-            <WorkingTimer
-              startTime={workingTime.time}
-              countState={countState}
-              getFinalWorkingTime={getFinalWorkingTime}
-              isCounting={isStateWork()}
-              canResetStartTime={isStateStop()}
-            />
-            <WorkingTimeDropdownList
-              defaultStartTime={defaultWorkingTime}
-              getTimeValue={getWorkingTimeValue}
-              isDisable={isStateWork() || isStateRest()}
-            />
+      <div
+        className={`pomodoros-page-clock-page ${
+          switchPage !== PAGES.CLOCK && "pomodoros-page-hide"
+        }`}
+      >
+        <div className="pomodoros-page-main">
+          <button
+            className="pomodoros-page-switch-button"
+            onClick={handleSwitchPage}
+          >
+            Analytics
+          </button>
+          <div className="pomodoros-page-today-weather-icon">
+            <TodayWeather />
           </div>
-          <div className="pomodoros-page-working-region">
-            <RestingTimer
-              startTime={restingTime.time}
-              countState={countState}
-              getFinalRestingTime={getFinalRestingTime}
-              isCounting={isStateRest()}
-              canResetStartTime={isStateStop()}
-            />
-            <RestingTimeDropdownList
-              defaultStartTime={defaultRestingTime}
-              getTimeValue={getRestingTimeValue}
-              isDisable={isStateWork() || isStateRest()}
-            />
+          <h2 className="pomodoros-page-title">
+            This project is still building.
+          </h2>
+          <div className="pomodoros-page-timers">
+            <div className="pomodoros-page-working-region">
+              <WorkingTimer
+                startTime={workingTime.time}
+                countState={countState}
+                getFinalWorkingTime={getFinalWorkingTime}
+                isCounting={isStateWork()}
+                canResetStartTime={isStateStop()}
+              />
+              <WorkingTimeDropdownList
+                defaultStartTime={defaultWorkingTime}
+                getTimeValue={getWorkingTimeValue}
+                isDisable={isStateWork() || isStateRest()}
+              />
+            </div>
+            <div className="pomodoros-page-resting-region">
+              <RestingTimer
+                startTime={restingTime.time}
+                countState={countState}
+                getFinalRestingTime={getFinalRestingTime}
+                isCounting={isStateRest()}
+                canResetStartTime={isStateStop()}
+              />
+              <RestingTimeDropdownList
+                defaultStartTime={defaultRestingTime}
+                getTimeValue={getRestingTimeValue}
+                isDisable={isStateWork() || isStateRest()}
+              />
+            </div>
           </div>
+          <WorkingContent
+            getWorkingContentValue={getWorkingContentValue}
+            isReadOnly={isStateWork() || isStateRest()}
+            countState={countState}
+          />
+          <StartButton handleStartButtonClick={handleStartButtonClick}>
+            {getNextState().toString()}
+          </StartButton>
         </div>
-        <WorkingContent
-          getWorkingContentValue={getWorkingContentValue}
-          isReadOnly={isStateWork() || isStateRest()}
-          countState={countState}
-        />
-        <StartButton handleStartButtonClick={handleStartButtonClick}>
-          {getNextState().toString()}
-        </StartButton>
+        <div className="pomodoros-page-record-list pomodoros-page-hide">
+          {recordList()}
+        </div>
       </div>
-      <div className="pomodoros-page-record-list">{recordList()}</div>
+      <div
+        className={`pomodoros-page-analystic-page ${
+          switchPage !== PAGES.ANALYSTIC && "pomodoros-page-hide"
+        }`}
+      >
+        <button
+          className="pomodoros-page-switch-button"
+          onClick={handleSwitchPage}
+        >
+          Clock
+        </button>
+        <AnalysticPage />
+      </div>
     </div>
   );
 }
