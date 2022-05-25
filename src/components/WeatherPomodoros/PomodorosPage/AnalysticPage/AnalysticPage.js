@@ -8,7 +8,7 @@ function AnalysticPage() {
     labels: FakeData.map((data) => data.date),
     datasets: [
       {
-        label: "Work Time",
+        label: "Work Time(min)",
         data: FakeData.map((data) => data.workTime),
         backgroundColor: ["lightGreen"],
         borderColor: "gray",
@@ -16,9 +16,17 @@ function AnalysticPage() {
       },
     ],
   });
+  const [chartOptions, setChartOptions] = useState({
+    plugins: {
+      title: {
+        display: true,
+        text: "Work Time In This Week",
+      },
+    },
+  });
   return (
     <div>
-      <BarChart chartData={timeData} />
+      <BarChart chartData={timeData} chartOptions={chartOptions} />
     </div>
   );
 }
