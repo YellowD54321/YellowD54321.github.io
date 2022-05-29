@@ -1,0 +1,9 @@
+.today-weather-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.today-weather-image {
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+.weather-page-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-page-main {
+    padding: 20px;
+}
+
+.weather-page-weather-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    align-items: center;
+    justify-items: center;
+}
+
+.weather-page-weather-image {
+    width: 100%;
+}

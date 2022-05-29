@@ -1,5 +1,5 @@
 import "./pomodorosPage.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   WorkingTimeDropdownList,
   RestingTimeDropdownList,
@@ -9,6 +9,7 @@ import { WorkingTimer, RestingTimer } from "./TimeCounter/TimeCounter";
 import WorkingContent from "./WorkingContent/WorkingContent";
 import TodayWeather from "./TodayWeather/TodayWeather";
 import AnalysticPage from "./AnalysticPage/AnalysticPage";
+import WeatherPage from "./WeatherPage/WeatherPage";
 
 function PorodomosPage() {
   const COUNT_STATE = {
@@ -33,6 +34,8 @@ function PorodomosPage() {
   const [finalWorkingtime, setFinalWorkingtime] = useState(0);
   const [finalRestingtime, setFinalRestingtime] = useState(0);
   const [switchPage, setSwitchPage] = useState(PAGES.CLOCK);
+  const [weatherPageShow, setWeatherPageShow] = useState(false);
+  const weatherPageRef = useRef(null);
   let hasFinished = useRef(false);
 
   function getWorkingTimeValue(timeValue) {
@@ -137,6 +140,25 @@ function PorodomosPage() {
     }
   }
 
+  function handleWeatherImageClick() {
+    setWeatherPageShow(true);
+  }
+
+  useEffect(() => {
+    function closeWeatherPage(event) {
+      const weatherPage = weatherPageRef.current;
+      if (weatherPage && !weatherPage.contains(event.target)) {
+        if (event.target !== weatherPage && weatherPageShow === true) {
+          setWeatherPageShow(false);
+        }
+      }
+    }
+    window.addEventListener("mousedown", closeWeatherPage);
+    return () => {
+      window.removeEventListener("mousedown", closeWeatherPage);
+    };
+  }, [weatherPageShow]);
+
   return (
     <div className="pomodoros-page-body">
       <div
@@ -152,11 +174,19 @@ function PorodomosPage() {
             Analytics
           </button>
           <div className="pomodoros-page-today-weather-icon">
-            <TodayWeather />
+            <TodayWeather handleWeatherImageClick={handleWeatherImageClick} />
           </div>
-          <h2 className="pomodoros-page-title">
+          <div
+            className={`pomodoros-page-weather-page ${
+              !weatherPageShow && "pomodoros-page-hide"
+            }`}
+            ref={weatherPageRef}
+          >
+            <WeatherPage />
+          </div>
+          {/* <h2 className="pomodoros-page-title">
             This project is still building.
-          </h2>
+          </h2> */}
           <div className="pomodoros-page-timers">
             <div className="pomodoros-page-working-region">
               <WorkingTimer

@@ -1,9 +1,9 @@
 import "./todayWeather.css";
 import React, { useState, useEffect } from "react";
 
-function TodayWeather() {
+function TodayWeather({ handleWeatherImageClick }) {
   const defaultLocation = "內湖區";
-  const w961o3 = "F-D0047-061"; //台北
+  const w961o3 = "F-D0047-063"; //台北
   const mp6xup6vu04 = "F-D0047-025"; //雲林縣
   const apiUrlTaipie = {
     key: "CWB-81EFCB65-4251-47DC-B37D-4B9B86AB3873",
@@ -16,8 +16,8 @@ function TodayWeather() {
   };
   const format = "JSON";
   const elementName = "Wx";
-  const timeFrom = "2022-05-25T00:00:00";
-  const timeTo = "2022-05-25T23:59:59";
+  const timeFrom = new Date();
+  const timeTo = new Date(timeFrom.getTime() + 86400000);
   const apiUrl =
     apiUrlTaipie.baseUrl +
     apiUrlTaipie.key +
@@ -28,9 +28,9 @@ function TodayWeather() {
     apiUrlTaipie.elementName +
     elementName +
     apiUrlTaipie.timeFrom +
-    timeFrom +
+    timeFrom.toISOString() +
     apiUrlTaipie.timeTo +
-    timeTo;
+    timeTo.toISOString();
   const [weatherData, setWeatherData] = useState(null);
 
   const fetchApi = async (url) => {
@@ -41,7 +41,7 @@ function TodayWeather() {
 
   const getWeatherInformation = () => {
     if (!weatherData) return null;
-    console.log(weatherData);
+    // console.log(weatherData);
     const cityData = weatherData.records.locations[0];
     const locationData = cityData.location[0];
     const weatherElements = locationData.weatherElement;
@@ -65,18 +65,24 @@ function TodayWeather() {
     const imageSrc = `./images/weather/${sunMoon}/${id}.svg`;
     return (
       <img
+        className="today-weather-image"
         src={imageSrc}
         alt="weatherIcon"
         title={describe}
-        className="today-weather-image"
+        onClick={handleWeatherImageClick}
       />
     );
   };
 
   useEffect(() => {
-    fetchApi(apiUrl).then((apiData) => {
-      setWeatherData(apiData);
-    });
+    try {
+      fetchApi(apiUrl).then((apiData) => {
+        setWeatherData(apiData);
+      });
+    } catch (err) {
+      console.log("Error happens from Weather API:");
+      console.error(err);
+    }
   }, []);
 
   const weatherInformation = getWeatherInformation();
@@ -85,6 +91,12 @@ function TodayWeather() {
     weatherImage = getWeatherImage(weatherInformation);
   }
 
-  return <div>{weatherImage}</div>;
+  return (
+    <div className="today-weather-body">
+      <p>{defaultLocation}</p>
+      {weatherImage}
+      <p>{weatherInformation?.describe}</p>
+    </div>
+  );
 }
 export default TodayWeather;
