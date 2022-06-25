@@ -4,83 +4,81 @@ import { useViewRegion } from "./MainPageReducer/ViewRegionContext.js";
 import { ScrollEffect } from "./ScrollEffect";
 import Container from "./Container";
 import oldFashionLoadingGif from "../../assets/images/gif/oldFashionImageLoading.gif";
+import { resolvePath } from "react-router-dom";
 function MainPage() {
   //oldFasionImagesOriginal saves information of every stage image.
   let oldFasionImagesOriginal = {
+    finish: {
+      imageUrl: [],
+      amount: 1,
+      fileName: "finish",
+      folderName: "finish",
+      startNumber: 1,
+      loaded: [],
+    },
     bitter: {
       imageUrl: [],
-      imageElement: [],
-      amount: 93,
+      amount: 29,
       fileName: "bitter",
-      startNumber: 5695,
+      folderName: "bitter",
+      startNumber: 5759,
       loaded: [],
     },
     bourbon: {
       imageUrl: [],
-      imageElement: [],
       amount: 123,
       fileName: "bourbon",
+      folderName: "bourbon",
       startNumber: 6366,
       loaded: [],
     },
     crush: {
       imageUrl: [],
-      imageElement: [],
       amount: 73,
       fileName: "crush",
+      folderName: "crush",
       startNumber: 5999,
       loaded: [],
     },
-    finish: {
+    sugarCube: {
       imageUrl: [],
-      imageElement: [],
-      amount: 1,
-      fileName: "finish",
-      startNumber: 1,
+      amount: 37,
+      fileName: "test",
+      folderName: "sugarCube",
+      startNumber: 5419,
       loaded: [],
     },
     iceCube: {
       imageUrl: [],
-      imageElement: [],
       amount: 68,
       fileName: "ice cube",
+      folderName: "iceCube",
       startNumber: 7166,
       loaded: [],
     },
     peel: {
       imageUrl: [],
-      imageElement: [],
       amount: 77,
       fileName: "peel",
+      folderName: "peel",
       startNumber: 7876,
       loaded: [],
     },
     pour: {
       imageUrl: [],
-      imageElement: [],
       amount: 100,
       fileName: "pour",
+      folderName: "pour",
       startNumber: 7275,
       loaded: [],
     },
-    sugarCube: {
-      imageUrl: [],
-      imageElement: [],
-      amount: 37,
-      fileName: "test",
-      startNumber: 5419,
-      loaded: [],
-    },
   };
-  const [loadedImage, setLoadedImage] = useState({
-    bitter: false,
-    bourbon: false,
-    crush: false,
-    finish: false,
-    iceCube: false,
-    peel: false,
-    pour: false,
-    sugarCube: false,
+  const [loadedImage, setLoadedImage] = useState(() => {
+    let imageList = {};
+    for (const imageContent of Object.values(oldFasionImagesOriginal)) {
+      imageList[imageContent.folderName] = false;
+    }
+    return imageList;
   });
   const [preLoadImageFinish, setPreLoadImageFinish] = useState(false);
   const [{ oldFasionImages }, dispatch] = useViewRegion();
@@ -97,16 +95,24 @@ function MainPage() {
   } = useMemo(() => ScrollEffect());
 
   useEffect(() => {
+    console.log("Last Modified: 20220625 16:48");
     //Initialize oldFasionImages
-    loadImageListFromEachFolder(oldFasionImagesOriginal);
-    // console.log("oldFasionImagesOriginal");
-    // console.log(oldFasionImagesOriginal);
+    setImageUrlList();
+    preLoadImage();
     dispatch({
       type: "SET_IMAGE",
       item: {
         oldFasionImages: oldFasionImagesOriginal,
       },
     });
+    return () => {
+      dispatch({
+        type: "SET_IMAGE",
+        item: {
+          oldFasionImages: null,
+        },
+      });
+    };
   }, []);
 
   //Initialize viewRegion
@@ -117,44 +123,92 @@ function MainPage() {
         viewRegion: scrollingElRef.current,
       },
     });
+    return () => {
+      dispatch({
+        type: "SET_VIEW_REGION",
+        item: {
+          viewRegion: null,
+        },
+      });
+    };
   }, [scrollingElRef]);
 
   //Load all oldfashion production images from folder.
-  function loadImageListFromEachFolder(imgObject) {
-    for (const [key, imageName] of Object.entries(imgObject)) {
-      for (let i = 0; i < imageName.amount; i++) {
-        const imageUrl = `../images/cocktail-${key}/${imageName.fileName}${
-          imageName.startNumber + i
-        }.png`;
-        const newImg = new Image();
-        imageName.loaded[i] = false;
-        newImg.onload = function () {
-          imageName.loaded[i] = true;
-          if (imageName.loaded.every((load) => load === true)) {
-            setLoadedImage((preState) => {
-              return {
-                ...preState,
-                [key]: true,
-              };
-            });
-          }
-        };
-        newImg.src = imageUrl;
-        imageName.imageUrl.push(imageUrl);
+  function setImageUrlList() {
+    for (const imageContent of Object.values(oldFasionImagesOriginal)) {
+      for (let i = 0; i < imageContent.amount; i++) {
+        const imageUrl = getImageUrl(
+          imageContent.folderName,
+          imageContent.fileName + (imageContent.startNumber + i)
+        );
+        imageContent.imageUrl.push(imageUrl);
       }
     }
   }
 
+  function getImageUrl(folderName, fileName) {
+    return `../images/cocktail-${folderName}/${fileName}.jpg`;
+  }
+
+  async function preLoadImage() {
+    for (const imageContent of Object.values(oldFasionImagesOriginal)) {
+      await loadImageInGroup(imageContent, imageContent.imageUrl.length);
+      if (imageContent.loaded.every((load) => load === true)) {
+        setLoadedImage((preState) => {
+          return {
+            ...preState,
+            [imageContent.folderName]: true,
+          };
+        });
+      }
+    }
+  }
+
+  function loadImageInGroup(imageContent, groupLength) {
+    let resultGroup = [];
+    for (let i = 0; i < groupLength; i++) {
+      resultGroup.push(loadImageAsync(imageContent, i));
+    }
+    return Promise.all(resultGroup);
+  }
+
+  function loadImageAsync(imageContent, index) {
+    return new Promise((resolve, reject) => {
+      const newImg = new Image();
+      const imageUrl = imageContent.imageUrl[index];
+
+      imageContent.loaded[index] = false;
+      newImg.onload = () => {
+        imageContent.loaded[index] = true;
+        return resolve({ imageContent, index });
+      };
+      newImg.onerror = () => {
+        return reject(
+          new Error(`Image load error for ${imageContent.folderName}[${index}]`)
+        );
+      };
+      newImg.src = imageUrl;
+    });
+  }
+
   //Check every class of images are loaded.
   useEffect(() => {
-    // console.log("Loading check.");
-    // console.log(loadedImage);
     let allLoaded = true;
-    for (const [key, value] of Object.entries(loadedImage)) {
+    let firstPartIsLoaded = true;
+    for (const [imageName, value] of Object.entries(loadedImage)) {
       if (value === false) allLoaded = false;
+      if (
+        (imageName === "finish" ||
+          imageName === "bourbon" ||
+          imageName === "crush" ||
+          imageName === "sugarCube") &&
+        value === false
+      ) {
+        firstPartIsLoaded = false;
+      }
     }
-    if (allLoaded === true) {
-      console.log("LOADING FINISHED!");
+    if (firstPartIsLoaded === true) {
+      console.log("FIRST PART LOADING FINISHED!");
       setPreLoadImageFinish(true);
     }
     return () => {

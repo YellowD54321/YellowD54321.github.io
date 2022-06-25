@@ -51,13 +51,13 @@ export function WeatherData() {
 
   const getWeatherInformation = () => {
     if (!weatherData) return null;
-    console.log(weatherData);
-    const cityData = weatherData.records.locations[0];
-    const locationData = cityData.location[0];
-    const weatherElements = locationData.weatherElement;
-    const weatherTime = weatherElements[0].time;
+    const cityData = weatherData.records?.locations?.[0];
+    const locationData = cityData?.location?.[0];
+    const weatherElements = locationData?.weatherElement;
+    const weatherTime = weatherElements?.[0]?.time;
 
     return weatherTime.map((data) => {
+      if (!data) return null;
       return {
         startTime: data.startTime,
         endTime: data.endTime,
