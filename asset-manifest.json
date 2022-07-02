@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.ca21cce7.css",
-    "main.js": "./static/js/main.be0fbd89.js",
+    "main.css": "./static/css/main.53ea34ab.css",
+    "main.js": "./static/js/main.dcab2039.js",
     "static/js/787.effb007a.chunk.js": "./static/js/787.effb007a.chunk.js",
     "static/media/oldFashionImageLoading.gif": "./static/media/oldFashionImageLoading.067aa543da915081e282.gif",
     "static/media/logo.png": "./static/media/logo.4cb57c3a1c6531df107d.png",
     "static/media/pomodoros-logo-icon-only.png": "./static/media/pomodoros-logo-icon-only.fbcd4415c2d0428429e3.png",
     "index.html": "./index.html",
-    "main.ca21cce7.css.map": "./static/css/main.ca21cce7.css.map",
-    "main.be0fbd89.js.map": "./static/js/main.be0fbd89.js.map",
+    "main.53ea34ab.css.map": "./static/css/main.53ea34ab.css.map",
+    "main.dcab2039.js.map": "./static/js/main.dcab2039.js.map",
     "787.effb007a.chunk.js.map": "./static/js/787.effb007a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca21cce7.css",
-    "static/js/main.be0fbd89.js"
+    "static/css/main.53ea34ab.css",
+    "static/js/main.dcab2039.js"
   ]
 }
