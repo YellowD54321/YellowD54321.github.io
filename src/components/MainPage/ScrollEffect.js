@@ -2,10 +2,9 @@
 export function ScrollEffect() {
   //container 1
   function scrollEffectContainer1(elementId, scrollPercent) {
-    if (screenWidthTooSmall()) return;
     const imgOne = () => {
-      const DEMARCATION_OUT_START = 0.64;
-      const DEMARCATION_OUT_END = 0.91;
+      const DEMARCATION_OUT_START = screenWidthTooSmall() ? 0.68 : 0.64;
+      const DEMARCATION_OUT_END = screenWidthTooSmall() ? 0.91 : 0.91;
       let styleOpacity =
         1 -
         proportionWithContainer(
@@ -29,7 +28,7 @@ export function ScrollEffect() {
       return {};
     };
     const featureOne = () => {
-      const DEMARCATION = 0.21;
+      const DEMARCATION = screenWidthTooSmall() ? 0.11 : 0.21;
       const styleOpacity = effectOpacityIncreaseThenDecrease(
         scrollPercent,
         DEMARCATION
@@ -37,7 +36,7 @@ export function ScrollEffect() {
       return { opacity: styleOpacity };
     };
     const featureTwo = () => {
-      const DEMARCATION = 0.54;
+      const DEMARCATION = screenWidthTooSmall() ? 0.44 : 0.54;
       const styleOpacity = effectOpacityIncreaseThenDecrease(
         scrollPercent,
         DEMARCATION
@@ -57,7 +56,6 @@ export function ScrollEffect() {
   }
   //container 2
   function scrollEffectContainer2(elementId, scrollPercent) {
-    if (screenWidthTooSmall()) return;
     //Image
     const imgOne = () => {
       const DEMARCATION_IN_START = -0.12;
@@ -66,13 +64,15 @@ export function ScrollEffect() {
       const DEMARCATION_OUT_END = 1;
       let styleScale = 1;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : -500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : 500;
       //Start
       let { styleVertical, styleHorizontal } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        -500,
-        500
+        verticalPosition,
+        horizontalPosition
       );
       if (scrollPercent < DEMARCATION_IN_START) {
         styleOpacity = 0;
@@ -121,13 +121,15 @@ export function ScrollEffect() {
       const DEMARCATION_OUT_END = 1;
       let styleScale = 1;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : -500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : -500;
       //Start
       let { styleVertical, styleHorizontal } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        -500,
-        -500
+        verticalPosition,
+        horizontalPosition
       );
       if (scrollPercent < DEMARCATION_IN_START) {
         styleOpacity = 0;
@@ -176,13 +178,15 @@ export function ScrollEffect() {
       const DEMARCATION_OUT_END = 1;
       let styleScale = 1;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : 500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : 500;
       //Start
       let { styleVertical, styleHorizontal } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        500,
-        500
+        verticalPosition,
+        horizontalPosition
       );
       if (scrollPercent < DEMARCATION_IN_START) {
         styleOpacity = 0;
@@ -231,13 +235,15 @@ export function ScrollEffect() {
       const DEMARCATION_OUT_END = 1;
       let styleScale = 1;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : 500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : -500;
       //Start
       let { styleVertical, styleHorizontal } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        500,
-        -500
+        verticalPosition,
+        horizontalPosition
       );
       if (scrollPercent < DEMARCATION_IN_START) {
         styleOpacity = 0;
@@ -285,14 +291,16 @@ export function ScrollEffect() {
       const DEMARCATION_IN_START = -0.12;
       const DEMARCATION_IN_END = 0.07;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : -500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : 0;
       let { styleVertical } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        -500,
-        0
+        verticalPosition,
+        horizontalPosition
       );
-      if (styleVertical >= 0) styleVertical = 0;
+      if (styleVertical >= -50) styleVertical = -50;
       //End
       const DEMARCATION_OUT_START = 0.8;
       const DEMARCATION_OUT_END = 1;
@@ -331,14 +339,16 @@ export function ScrollEffect() {
       const DEMARCATION_IN_START = -0.05;
       const DEMARCATION_IN_END = 0.21;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : -500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : 0;
       let { styleVertical } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        -500,
-        0
+        verticalPosition,
+        horizontalPosition
       );
-      if (styleVertical > 0) styleVertical = 0;
+      if (styleVertical > -50) styleVertical = -50;
       //End
       const DEMARCATION_OUT_START = 0.8;
       const DEMARCATION_OUT_END = 1;
@@ -377,14 +387,17 @@ export function ScrollEffect() {
       const DEMARCATION_IN_START = 0.17;
       const DEMARCATION_IN_END = 0.44;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : 500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : 0;
       let { styleVertical } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        500,
-        0
+        verticalPosition,
+        horizontalPosition
       );
       if (styleVertical < 0) styleVertical = 0;
+      if (screenWidthTooSmall()) styleVertical = -50;
       //End
       const DEMARCATION_OUT_START = 0.8;
       const DEMARCATION_OUT_END = 1;
@@ -423,14 +436,17 @@ export function ScrollEffect() {
       const DEMARCATION_IN_START = 0.39;
       const DEMARCATION_IN_END = 0.61;
       let styleOpacity = 0;
+      const verticalPosition = screenWidthTooSmall() ? 0 : 500;
+      const horizontalPosition = screenWidthTooSmall() ? 0 : 0;
       let { styleVertical } = effectPositionChangeFromOutSide(
         scrollPercent,
         DEMARCATION_IN_START,
         DEMARCATION_IN_END,
-        500,
-        0
+        verticalPosition,
+        horizontalPosition
       );
       if (styleVertical < 0) styleVertical = 0;
+      if (screenWidthTooSmall()) styleVertical = -50;
       //End
       const DEMARCATION_OUT_START = 0.8;
       const DEMARCATION_OUT_END = 1;
@@ -496,7 +512,6 @@ export function ScrollEffect() {
   }
   //container 3
   function scrollEffectContainer3(elementId, scrollPercent) {
-    if (screenWidthTooSmall()) return;
     const imgOne = () => {
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.33;
@@ -564,7 +579,6 @@ export function ScrollEffect() {
   }
   //container 4
   function scrollEffectContainer4(elementId, scrollPercent) {
-    if (screenWidthTooSmall()) return;
     const imgOne = () => {
       const DEMARCATION_IN_START = -0.09;
       const DEMARCATION_IN_END = 0.13;
@@ -619,7 +633,6 @@ export function ScrollEffect() {
   }
   //container 5
   function scrollEffectContainer5(elementId, scrollPercent) {
-    if (screenWidthTooSmall()) return;
     const imgOne = () => {
       const DEMARCATION_IN_START = 0.04;
       const DEMARCATION_IN_END = 0.29;
@@ -681,7 +694,6 @@ export function ScrollEffect() {
   }
   //container 6
   function scrollEffectContainer6(elementId, scrollPercent) {
-    if (screenWidthTooSmall()) return;
     const imgOne = () => {
       const DEMARCATION_IN_START = -0.04;
       const DEMARCATION_IN_END = 0.48;
@@ -778,9 +790,6 @@ export function ScrollEffect() {
     const imgFinish = () => {};
 
     const imgSugarCube = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.sugarCube?.imageUrl[5];
-      }
       const DEMARCATION_IN_START = -0.12;
       const DEMARCATION_IN_END = 0.8;
       const imgAmount = oldFasionImages?.sugarCube?.imageUrl.length - 1;
@@ -794,11 +803,6 @@ export function ScrollEffect() {
     };
 
     const imgBitter = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.bitter?.imageUrl[
-          oldFasionImages?.bitter?.imageUrl.length - 1
-        ];
-      }
       const DEMARCATION_IN_START = -0.05;
       const DEMARCATION_IN_END = 0.8;
       const imgAmount = oldFasionImages?.bitter?.imageUrl.length - 1;
@@ -812,9 +816,6 @@ export function ScrollEffect() {
     };
 
     const imgCrush = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.crush?.imageUrl[43];
-      }
       const DEMARCATION_IN_START = 0.17;
       const DEMARCATION_IN_END = 0.8;
       const imgAmount = oldFasionImages?.crush?.imageUrl.length - 1;
@@ -828,9 +829,6 @@ export function ScrollEffect() {
     };
 
     const imgBourbon = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.bourbon?.imageUrl[85];
-      }
       const DEMARCATION_IN_START = 0.17;
       const DEMARCATION_IN_END = 0.8;
       const imgAmount = oldFasionImages?.bourbon?.imageUrl.length - 1;
@@ -844,9 +842,6 @@ export function ScrollEffect() {
     };
 
     const imgIceCube = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.iceCube?.imageUrl[47];
-      }
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.9;
       const imgAmount = oldFasionImages?.iceCube?.imageUrl.length - 1;
@@ -860,9 +855,6 @@ export function ScrollEffect() {
     };
 
     const imgPour = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.pour?.imageUrl[63];
-      }
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.9;
       const imgAmount = oldFasionImages?.pour?.imageUrl.length - 1;
@@ -876,9 +868,6 @@ export function ScrollEffect() {
     };
 
     const imgPeel = () => {
-      if (screenWidthTooSmall()) {
-        return oldFasionImages?.peel?.imageUrl[32];
-      }
       const DEMARCATION_IN_START = 0;
       const DEMARCATION_IN_END = 0.8;
       const imgAmount = oldFasionImages?.peel?.imageUrl.length - 1;

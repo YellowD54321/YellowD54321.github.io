@@ -29,13 +29,13 @@ function Header() {
 
   //Change opacity when page is scrolling down.
   const switchOpacity = () => {
-    if (window.outerWidth >= 1024) {
-      if (window.scrollY >= 100) {
-        setStyleOpacity(0.7);
-      } else {
-        setStyleOpacity(1);
-      }
+    // if (window.outerWidth >= 1024) {
+    if (window.scrollY >= 100) {
+      setStyleOpacity(0.7);
+    } else {
+      setStyleOpacity(1);
     }
+    // }
   };
 
   //Save search text to reducer to make other componenet be able to use it.
@@ -117,17 +117,18 @@ function Header() {
   function headerAccountButtonOnClick() {
     if (isLogIn()) {
       const accountInfoWindow = accountNavBarRef?.current;
-      if (
-        accountInfoWindow.classList.contains(
-          "header-account-small-navBar-clicked"
-        )
-      ) {
-        accountInfoWindow.classList.remove(
-          "header-account-small-navBar-clicked"
-        );
-      } else {
-        accountInfoWindow.classList.add("header-account-small-navBar-clicked");
-      }
+      accountInfoWindow.classList.toggle("header-account-small-navBar-clicked");
+      // if (
+      //   accountInfoWindow.classList.contains(
+      //     "header-account-small-navBar-clicked"
+      //   )
+      // ) {
+      //   accountInfoWindow.classList.remove(
+      //     "header-account-small-navBar-clicked"
+      //   );
+      // } else {
+      //   accountInfoWindow.classList.add("header-account-small-navBar-clicked");
+      // }
     } else {
       handleLogIn();
     }

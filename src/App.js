@@ -25,7 +25,7 @@ function App() {
   //Combine Header and Main Page
   const WholeMainPage = () => {
     return (
-      <div>
+      <div className="main-page-whole-page">
         <Header />
         <ViewRegionProvider
           initialState={initialState}
@@ -39,7 +39,7 @@ function App() {
   //Combine Header and Search Page
   const WholeSearchPage = () => {
     return (
-      <div>
+      <div className="main-page-whole-page">
         <Header />
         <SearchPage />
       </div>
@@ -48,7 +48,7 @@ function App() {
   //Combine Header and Single Cocktail Page
   const WholeProductPage = () => {
     return (
-      <div>
+      <div className="main-page-whole-page">
         <Header />
         <ProductPage />
       </div>
@@ -57,7 +57,7 @@ function App() {
   //Combine Header and Favourite Page.
   const WholeFavouritePage = () => {
     return (
-      <div>
+      <div className="main-page-whole-page">
         <Header />
         <FavouritePage />
       </div>

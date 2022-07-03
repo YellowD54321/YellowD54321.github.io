@@ -21,7 +21,7 @@ function SignUpPage() {
         const user = userCredential.user;
         setSignUpFailInfo("");
         console.log("SIGNUP SUCCESSFUL!");
-        navigate("/nextDrink");
+        navigate("/nextDrink/mainPage");
       })
       .catch((error) => {
         const errorCode = error.code;
