@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "./static/css/main.dd82c06e.css",
-    "main.js": "./static/js/main.ad48e62d.js",
+    "main.js": "./static/js/main.404f0ad4.js",
     "static/js/787.effb007a.chunk.js": "./static/js/787.effb007a.chunk.js",
     "static/media/oldFashionImageLoading.gif": "./static/media/oldFashionImageLoading.067aa543da915081e282.gif",
     "static/media/logo.png": "./static/media/logo.4cb57c3a1c6531df107d.png",
     "static/media/pomodoros-logo-icon-only.png": "./static/media/pomodoros-logo-icon-only.fbcd4415c2d0428429e3.png",
     "index.html": "./index.html",
     "main.dd82c06e.css.map": "./static/css/main.dd82c06e.css.map",
-    "main.ad48e62d.js.map": "./static/js/main.ad48e62d.js.map",
+    "main.404f0ad4.js.map": "./static/js/main.404f0ad4.js.map",
     "787.effb007a.chunk.js.map": "./static/js/787.effb007a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dd82c06e.css",
-    "static/js/main.ad48e62d.js"
+    "static/js/main.404f0ad4.js"
   ]
 }
